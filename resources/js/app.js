@@ -10,6 +10,8 @@ Vue.use(BootstrapVue);
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
 
+Vue.component('loading-component', require('./components/LoadingComponent.vue').default);
+
 // Maestros
 Vue.component('maestro-component', require('./components/maestros/MaestroComponent.vue').default);
 Vue.component('maestro-alta-component', require('./components/maestros/MaestroAltaComponent.vue').default);

@@ -16,8 +16,11 @@
                         </div>
                     </div>
 
+                    <div v-if="loading">
+                        <loading-component/>
+                    </div>
 
-                    <div class="row mx-4">
+                    <div v-if="!loading" class="row mx-4">
                         <div class="col">
                             <maestro-alta-component
                                 @new="addMaestro"
@@ -54,11 +57,14 @@ import {capitalizeFirstLetter} from '../../helpers';
         data() {
             return {
                 maestros: [],
+                loading: false
             }
         },
         mounted() {
+            this.loading = true;
             axios.get(`/api/${this.pluralname}`).then( response => {
                 this.maestros = response.data;
+                this.loading = false;
             });
         },
         methods: {

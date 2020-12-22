@@ -45,6 +45,10 @@
     border-top: 3px solid $primary !important;
 }
 
+.card-body.table-responsive {
+    overflow-x: hidden !important;
+}
+
 a {
     color: $primary;
     text-decoration: none;

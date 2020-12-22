@@ -114,6 +114,46 @@ class SistemasSeeder extends Seeder
             'updated_at'     => Carbon::now(),
         ]);
 
+        DB::table('sistema_recursos')->insert([
+            'sistema_id'     => 1,
+            'user_id'        => 15,
+            'role_id'        => 6,
+            'habilitado'     => 1,
+            'user_id_log'    => 1,
+            'created_at'     => Carbon::now(),
+            'updated_at'     => Carbon::now(),
+        ]);
+
+        DB::table('sistema_recursos')->insert([
+            'sistema_id'     => 1,
+            'user_id'        => 11,
+            'role_id'        => 9,
+            'habilitado'     => 1,
+            'user_id_log'    => 1,
+            'created_at'     => Carbon::now(),
+            'updated_at'     => Carbon::now(),
+        ]);
+
+        DB::table('sistema_recursos')->insert([
+            'sistema_id'     => 1,
+            'user_id'        => 10,
+            'role_id'        => 8,
+            'habilitado'     => 1,
+            'user_id_log'    => 1,
+            'created_at'     => Carbon::now(),
+            'updated_at'     => Carbon::now(),
+        ]);
+
+        DB::table('sistema_recursos')->insert([
+            'sistema_id'     => 1,
+            'user_id'        => 8,
+            'role_id'        => 6,
+            'habilitado'     => 1,
+            'user_id_log'    => 1,
+            'created_at'     => Carbon::now(),
+            'updated_at'     => Carbon::now(),
+        ]);
+
         DB::table('sistema_caracteristicas')->insert([
             'sistema_id'            => 1,
             'caracteristica_id'     => 2,

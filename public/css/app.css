@@ -46,6 +46,10 @@
   border-top: 3px solid #374654 !important;
 }
 
+.card-body.table-responsive {
+  overflow-x: hidden !important;
+}
+
 a {
   color: #374654;
   text-decoration: none;
