@@ -1,0 +1,136 @@
+
+
+.badge-secondary {
+    color: black;
+    background: lightgray;
+}
+
+.input-group-append .btn {
+    min-width: 85px !important;
+}
+
+.card-primary:not(.card-outline)>.card-header {
+    background-color: $primary !important;
+}
+
+.btn {
+    min-width: 70px;
+}
+
+.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: $primary-hover;
+    border-color: $primary-hover;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color:$primary-hover;
+    border-color: $primary-hover;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: $primary-hover;
+    border-color: $primary-hover;
+    box-shadow: none,0 0 0 0 rgba(38,143,255,.5);
+}
+
+.card-primary.card-outline {
+    border-top: 3px solid $primary !important;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: $primary-hover;
+    text-decoration: none;
+}
+
+.btn-outline-primary {
+    color: $primary;
+    border-color: $primary;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: $primary-hover;
+    border-color: $primary-hover;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: $primary-hover;
+    border-color: $primary-hover;
+}
+
+.bg-primary {
+    background-color: $primary !important;
+}
+
+.btn-sm {
+  font-size: 12px;
+}
+
+.card-footer {
+    background-color: white !important;
+    border-top: 1px solid rgba(0,0,0,.125) !important;
+}
+
+.text-nowrap {
+    overflow: hidden;
+    max-width: 250px;
+    text-overflow: ellipsis;
+}
+
+.bordered {
+    padding: 10px;
+    border: solid 1px lightgray;
+    margin: 0px;
+    border-radius: 4px;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #0c529c;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: $primary !important;
+    border-color: $primary !important;
+}
+
+select.mini {
+    height: auto;
+    line-height: 14px;
+}
+
+input:disabled {
+    background: #fff !important;
+}
+
+select:disabled {
+    background: #fff !important;
+    color: black !important;
+}
+
+textarea:disabled {
+    background: #fff !important;
+}
