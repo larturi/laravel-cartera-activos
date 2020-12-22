@@ -16,7 +16,11 @@
                         </div>
                     </div>
 
-                    <div class="card-body p-0 table-responsive mb-0" style="display: block;">
+                    <div v-if="loading">
+                        <loading-component/>
+                    </div>
+
+                    <div v-if="!loading" class="card-body p-0 table-responsive mb-0" style="display: block;">
                         <table class="table table-striped projects">
                             <thead>
                                 <tr>
@@ -70,12 +74,15 @@
         data() {
             return {
                 recursos: [],
+                loading: false
             }
         },
 
         mounted() {
+            this.loading = true;
             axios.get(`/api/recursos/${this.sistema.id}`).then( response => {
                 this.recursos = response.data;
+                this.loading = false;
             });
         },
 

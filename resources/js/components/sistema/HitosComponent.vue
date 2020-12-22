@@ -1,7 +1,11 @@
 <template>
     <div>
 
-        <div class="card-body p-0 table-responsive mb-0" style="display: block;" v-if="hitos.length > 0">
+        <div v-if="loading">
+            <loading-component/>
+        </div>
+
+        <div class="card-body p-0 table-responsive mb-0" style="display: block;" v-if="!loading && hitos.length > 0">
             <table class="table table-striped projects">
                 <thead>
                     <tr>
@@ -32,7 +36,7 @@
                 <div class="col-8 mr-4">
                     <p class="mt-1"
                         style="margin-left: 19px;"
-                        v-if="hitos.length === 0">Aún no se han registrado hitos</p>
+                        v-if="!loading && hitos.length === 0">Aún no se han registrado hitos</p>
                 </div>
 
                 <div v-if="canedit" class="col">
@@ -64,12 +68,15 @@
                 hitos: [],
                 hitoEdit: {},
                 isEditing: false,
+                loading: false
             }
         },
 
         mounted() {
+            this.loading = true;
             axios.get(`/api/hitos-sistema/${this.sistemaid}`).then( response => {
                 this.hitos = response.data;
+                this.loading = false;
             });
         },
 

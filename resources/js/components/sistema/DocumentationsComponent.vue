@@ -1,7 +1,11 @@
 <template>
     <div>
 
-        <div class="card-body p-0 table-responsive mb-0" style="display: block;" v-if="documentations.length > 0">
+        <div v-if="loading">
+            <loading-component/>
+        </div>
+
+        <div class="card-body p-0 table-responsive mb-0" style="display: block;" v-if="!loading && documentations.length > 0">
             <table class="table table-striped projects">
                 <thead>
                     <tr>
@@ -31,7 +35,7 @@
                 <div class="col-8 mr-4">
                     <p class="mt-1"
                         style="margin-left: 19px;"
-                        v-if="documentations.length === 0">Aún no se ha cargado documentación</p>
+                        v-if="!loading && documentations.length === 0">Aún no se ha cargado documentación</p>
                 </div>
 
                 <div v-if="canedit" class="col">
@@ -57,12 +61,15 @@
         data() {
             return {
                 documentations: [],
+                loading: false
             }
         },
 
         mounted() {
+            this.loading = true;
             axios.get(`/api/documentations-sistema/${this.sistemaid}`).then( response => {
                 this.documentations = response.data;
+                this.loading = false;
             });
         },
 

@@ -1,7 +1,11 @@
 <template>
     <div>
 
-        <div class="card-body p-0 table-responsive mb-0" style="display: block;" v-if="repositorios.length > 0">
+        <div v-if="loading">
+            <loading-component/>
+        </div>
+
+        <div class="card-body p-0 table-responsive mb-0" style="display: block;" v-if="!loading && repositorios.length > 0">
             <table class="table table-striped projects">
                 <thead>
                     <tr>
@@ -31,7 +35,7 @@
                 <div class="col-8 mr-4">
                     <p class="mt-1"
                         style="margin-left: 19px;"
-                        v-if="repositorios.length === 0">No se han cargado repositorios</p>
+                        v-if="!loading && repositorios.length === 0">No se han cargado repositorios</p>
                 </div>
 
                 <div v-if="canedit" class="col">
@@ -57,12 +61,15 @@
         data() {
             return {
                 repositorios: [],
+                loading: false
             }
         },
 
         mounted() {
+            this.loading = true;
             axios.get(`/api/repositorios-sistema/${this.sistemaid}`).then( response => {
                 this.repositorios = response.data;
+                this.loading = false;
             });
         },
 

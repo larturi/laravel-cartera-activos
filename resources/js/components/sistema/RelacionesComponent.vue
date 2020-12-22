@@ -2,7 +2,11 @@
 
     <div>
 
-        <div class="card-body p-0 table-responsive mb-0" style="display: block;" v-if="relaciones.length > 0">
+        <div v-if="loading">
+            <loading-component/>
+        </div>
+
+        <div v-if="!loading && relaciones.length > 0" class="card-body p-0 table-responsive mb-0" style="display: block;">
             <table class="table table-striped projects">
                 <thead>
                     <tr>
@@ -26,13 +30,13 @@
             </table>
         </div>
 
-        <div class="card-footer">
+        <div v-if="!loading" class="card-footer">
             <div class="row mb-0">
 
                 <div class="col-8 mr-4">
                     <p class="mt-1"
                     style="margin-left: 19px;"
-                    v-if="relaciones.length === 0">No se han encontrado relaciones con otros sistemas</p>
+                    v-if="!loading && relaciones.length === 0">No se han encontrado relaciones con otros sistemas</p>
                 </div>
 
                 <div v-if="canedit" class="col mr-1">
@@ -58,12 +62,15 @@
         data() {
             return {
                 relaciones: [],
+                loading: false
             }
         },
 
         mounted() {
+            this.loading = true;
             axios.get(`/api/relaciones/${this.sistema.id}`).then( response => {
                 this.relaciones = response.data;
+                this.loading = false;
             });
         },
 
