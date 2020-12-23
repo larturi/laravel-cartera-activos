@@ -11,10 +11,19 @@
         </div>
 
         <ambientes-component
-            :sistemaid="{{ $sistema->id }}"
-            canedit="{{ Auth::user()->canEdit() }}"
-            >
-        </ambientes-component>
+          :sistemaid="{{ $sistema->id }}"
+          canedit="{{ Auth::user()->canEdit() }}"
+        ></ambientes-component>
 
     </div>
+
+</div>
+
+{{-- Comentarios --}}
+<div class="col-12">
+    <comentarios-component
+      :sistema="{{ $sistema }}"
+      columna="comentarios_ambientes"
+      canedit="{{ Auth::user()->canEdit() }}"
+    ></comentarios-component>
 </div>

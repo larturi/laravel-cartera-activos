@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::delete('/sistemas/{sistema}', 'SistemaController@destroy')->name('sistemas.destroy');
     Route::put('/sistemas/{sistema}', 'SistemaController@update')->name('sistemas.update');
     Route::get('/api/sistemas', 'SistemaController@getSistemasList')->name('sistemas.list');
+    Route::put('/api/sistemas', 'SistemaController@updateComentario')->name('sistemas.update-comentario');
 
     // Miembros (Users)
     Route::get('/api/miembros', 'SistemaController@getMiembrosAll')->name('miembros');

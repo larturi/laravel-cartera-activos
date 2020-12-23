@@ -41,6 +41,14 @@
     </div>
 </div>
 
+{{-- Comentarios --}}
+<div class="col-12">
+    <comentarios-component
+      :sistema="{{ $sistema }}"
+      columna="comentarios_documentacion"
+      canedit="{{ Auth::user()->canEdit() }}"
+    ></comentarios-component>
+</div>
 
 
 

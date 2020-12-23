@@ -293,10 +293,9 @@
 
                                 </p>
 
-                                <button type="submit"
-                              class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-primary float-right">
                                   Guardar
-                              </button>
+                                </button>
 
                               </div>
 

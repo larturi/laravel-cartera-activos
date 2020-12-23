@@ -125,6 +125,10 @@ class CreateSistemasTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('f_produccion')->nullable();
             $table->string('url_checksystem')->nullable();
+            $table->text('comentarios_recursos')->nullable();
+            $table->text('comentarios_desarrollo')->nullable();
+            $table->text('comentarios_documentacion')->nullable();
+            $table->text('comentarios_ambientes')->nullable();
             $table->date('f_baja')->nullable();
             $table->timestamps();
         });

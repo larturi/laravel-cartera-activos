@@ -155,4 +155,9 @@ class UserPolicy
     {
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
     }
+
+    public function updateComentario(User $authUser, User $user)
+    {
+        return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
+    }
 }

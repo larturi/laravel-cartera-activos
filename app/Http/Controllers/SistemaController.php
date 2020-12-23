@@ -651,4 +651,16 @@ class SistemaController extends Controller
           ]);
     }
 
+    public function updateComentario(Request $request)
+    {
+        $this->authorize(Auth()->user());
+
+        return Sistema::where('id', $request['sistema_id'])
+          ->update([
+              $request['columna'] => $request['comentario'],
+          ]);
+    }
+
+
+
 }

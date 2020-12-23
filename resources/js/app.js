@@ -20,6 +20,9 @@ Vue.component('maestros-component', require('./components/maestros/MaestrosCompo
 // Caracteristicas
 Vue.component('caracteristicas-component', require('./components/sistema/CaracteristicasComponent.vue').default);
 
+// Comentarios
+Vue.component('comentarios-component', require('./components/sistema/ComentariosComponent.vue').default);
+
 // Recursos
 Vue.component('recursos-component', require('./components/sistema/RecursosComponent.vue').default);
 Vue.component('recurso-component', require('./components/sistema/RecursoComponent.vue').default);
