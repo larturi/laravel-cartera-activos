@@ -4,9 +4,8 @@
             <td>{{ relacion.sistema.nombre }}</td>
             <td>{{ relacion.descripcion }}</td>
             <td v-if="canedit">
-                <a href="#"
-                class="btn btn-outline-danger btn-sm"
-                v-on:click="onClickDelete()">Borrar</a>
+                <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1" v-on:click.prevent="onClickEdit()">Editar</a>
+                <a href="#" class="btn btn-outline-danger btn-sm" v-on:click="onClickDelete()">Borrar</a>
             </td>
 
         </tr>
@@ -19,6 +18,12 @@
         props: {
             relacion: {},
             canedit: false
+        },
+
+        data() {
+            return {
+                relacionEdit: {},
+            }
         },
 
         methods: {
@@ -35,15 +40,19 @@
                     if (result.isConfirmed) {
                         axios.delete(`/api/relaciones/${this.relacion.id}`).then( () => {
                             this.$emit('delete');
-                            this.$swal.fire(
-                                'Eliminado!',
-                                'El registro ha sido eliminado',
-                                'success'
-                            );
                         });
                     }
                 });
             },
+
+            onClickEdit() {
+
+                axios.get(`/api/relacion-sistema/${this.relacion.id}`).then(  response => {
+                    this.$emit("update-relacion-selected", response.data) ;
+                    $('#modelRelacionId').modal('toggle');
+                });
+
+            }
         },
 
     }

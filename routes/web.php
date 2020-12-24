@@ -79,6 +79,8 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/api/relaciones/{sistema}', 'SistemaController@getRelacionesSistema')->name('relaciones.get');
     Route::post('/api/relaciones', 'SistemaController@addRelacionSistema')->name('relaciones.add');
     Route::delete('/api/relaciones/{relacion}', 'SistemaController@deleteRelacionSistema')->name('relaciones.delete');
+    Route::get('/api/relacion-sistema/{relacion}', 'SistemaController@getRelacion')->name('relacion.get');
+    Route::put('/api/relacion-sistema', 'SistemaController@updateRelacion')->name('relacion.update');
 
     // Checksystem
     Route::delete('/api/checksystem/{sistema}', 'SistemaController@deleteChecksystem')->name('checksystem.delete');

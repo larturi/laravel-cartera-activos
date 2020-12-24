@@ -22,6 +22,7 @@
                             :key="relacion.id"
                             :canedit="canedit"
                             @delete="deleteRelacion(relacion)"
+                            @update-relacion-selected="onUpdateItemSelected(relacion)"
                             :relacion="relacion">
                     </relacion-component>
 
@@ -42,8 +43,12 @@
                 <div v-if="canedit" class="col mr-1">
                     <relacion-add-component
                         @new="addRelacion"
+                        @update="updateRelacion(...arguments)"
                         :sistema="sistema.id"
                         :relaciones="relaciones"
+                        :relacionEdit="relacionEdit"
+                        :isEditing="isEditing"
+                        @update-isEditing="onUpdateIsEditing(state = false)"
                     >
                     </relacion-add-component>
                 </div>
@@ -62,25 +67,41 @@
         data() {
             return {
                 relaciones: [],
-                loading: false
+                loading: false,
+                relacionEdit: {},
+                isEditing: false
             }
         },
 
         mounted() {
-            this.loading = true;
-            axios.get(`/api/relaciones/${this.sistema.id}`).then( response => {
-                this.relaciones = response.data;
-                this.loading = false;
-            });
+            this.refresh();
         },
 
         methods: {
             addRelacion(relacion) {
-                this.relaciones.push(...relacion);
+                this.refresh();
             },
             deleteRelacion(relacion) {
-                this.relaciones.splice(relacion, 1);
+                this.refresh();
             },
+            updateRelacion(relacion) {
+                this.refresh();
+            },
+            onUpdateIsEditing(state) {
+                this.isEditing = state;
+            },
+            onUpdateItemSelected(relacion) {
+                this.relacionEdit = {...relacion};
+                this.isEditing = true;
+            },
+            refresh() {
+                this.loading = true;
+                axios.get(`/api/relaciones/${this.sistema.id}`).then( response => {
+                    this.relaciones = response.data;
+                    this.loading = false;
+                    this.isEditing = false;
+                });
+            }
         },
 
     }

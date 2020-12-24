@@ -427,6 +427,23 @@ class SistemaController extends Controller
         return $sistema;
     }
 
+    public function getRelacion($id)
+    {
+        $relacion = SistemaRelaciones::where('id', $id)
+                        ->get();
+        return $relacion;
+    }
+
+    public function updateRelacion(Request $request)
+    {
+        $this->authorize(Auth()->user());
+
+        return SistemaRelaciones::where('id', $request['relacion_id'])
+          ->update([
+              'descripcion' => $request['descripcion'],
+          ]);
+    }
+
     public function getSistemasList()
     {
         $sistemas = Sistema::all();

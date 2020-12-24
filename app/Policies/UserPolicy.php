@@ -96,6 +96,11 @@ class UserPolicy
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
     }
 
+    public function updateRelacion(User $authUser, User $user)
+    {
+        return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
+    }
+
     public function deleteChecksystem(User $authUser, User $user)
     {
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
