@@ -14,7 +14,7 @@
             <a href="#"
                v-if="recurso.role_id !== 1"
                class="btn btn-outline-danger btn-sm"
-               v-on:click="onClickDelete()">Borrar</a>
+               v-on:click.prevent="onClickDelete()">Borrar</a>
         </td>
 
     </tr>

@@ -39,27 +39,27 @@
             <a v-if="usuario.approved === 0 && edit === false && usuario.habilitado === 1"
                href="#"
                class="mr-2 btn btn-success btn-sm btn-block mb-2"
-               v-on:click="onClickAsignarRol()">Asignar Rol
+               v-on:click.prevent="onClickAsignarRol()">Asignar Rol
             </a>
             <a v-if="edit"
                href="#"
                class="mr-2 btn btn-secondary btn-sm btn-block mb-2"
-               v-on:click="onClickCancelar()">Cancelar
+               v-on:click.prevent="onClickCancelar()">Cancelar
             </a>
             <a v-if="usuario.habilitado === 1"
                href="#"
                class="mr-2 btn btn-danger btn-sm btn-block mb-2"
-               v-on:click="onClickBaja()">Baja
+               v-on:click.prevent="onClickBaja()">Baja
             </a>
             <a v-if="usuario.habilitado === 0"
                href="#"
                class="mr-2 btn btn-success btn-sm btn-block mb-2"
-               v-on:click="onClickHabilitar()">Habilitar
+               v-on:click.prevent="onClickHabilitar()">Habilitar
             </a>
             <a v-if="usuario.habilitado === 1 && usuario.approved === 1 && !edit"
                href="#"
                class="mr-2 btn btn-primary btn-sm btn-block mb-2"
-               v-on:click="onClickAsignarRol()">Cambiar Rol
+               v-on:click.prevent="onClickAsignarRol()">Cambiar Rol
             </a>
         </td>
     </tr>

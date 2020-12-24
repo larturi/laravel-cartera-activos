@@ -18,7 +18,7 @@
                     v-model="maestro.nombre">
 
         <div v-if="!readonly" class="input-group-append">
-            <a href="#" class="btn btn-danger" v-on:click="onClickDelete()">Eliminar</a>
+            <a href="#" class="btn btn-danger" v-on:click.prevent="onClickDelete()">Eliminar</a>
             <a href="#" class="btn btn-primary" v-if="!editMode" v-on:click.prevent="onClickEdit()">Editar</a>
             <a href="#" class="btn btn-primary" v-if="editMode" v-on:click.prevent="onClickUpdate()">Guardar</a>
         </div>

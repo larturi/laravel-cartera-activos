@@ -18,7 +18,7 @@
                         v-model="url">
 
             <div v-if="canedit" class="input-group-append">
-                <a href="#" class="btn btn-danger" v-if="!editMode" v-on:click="onClickDelete()">Eliminar</a>
+                <a href="#" class="btn btn-danger" v-if="editMode && url !== ''" v-on:click.prevent="onClickDelete()">Borrar</a>
                 <a href="#" class="btn btn-primary" v-if="!editMode" v-on:click.prevent="onClickEdit()">Editar</a>
                 <a href="#" class="btn btn-secondary" v-if="editMode" v-on:click.prevent="onClickCancel()">Cancelar</a>
                 <a href="#" class="btn btn-primary" v-if="editMode" v-on:click.prevent="onClickUpdate()">Guardar</a>
@@ -56,9 +56,7 @@ import {validURL} from '../../helpers';
         },
 
         created() {
-          if (this.checksystem === '') {
-                this.editMode = true;
-          } else {
+          if (this.checksystem !== '') {
               this.url = this.checksystem;
           }
         },
@@ -73,7 +71,10 @@ import {validURL} from '../../helpers';
 
             onClickDelete() {
                 axios.delete(`/api/checksystem/${this.sistemaid}`).then( (response) => {
+                    this.editMode = false;
                     this.url = '';
+                    this.urlOriginal = '';
+                    this.urlError = false;
                 });
             },
             onClickEdit () {
@@ -89,6 +90,7 @@ import {validURL} from '../../helpers';
                     this.urlError = false;
                     axios.put(`/api/checksystem`, params).then( (response => {
                         this.editMode = false;
+                        this.urlOriginal = this.url;
                         const maestro = response.data;
                         this.$emit('update', maestro);
                     }));
@@ -98,6 +100,7 @@ import {validURL} from '../../helpers';
             },
             onClickCancel() {
                this.editMode = false;
+               this.urlError = false;
                this.url = this.urlOriginal;
             },
             onClickOpenUrl() {

@@ -7,7 +7,7 @@
         <td v-if="canedit">
             <a href="#"
                class="btn btn-outline-danger btn-sm"
-               v-on:click="onClickDelete()">Borrar</a>
+               v-on:click.prevent="onClickDelete()">Borrar</a>
         </td>
 
     </tr>
