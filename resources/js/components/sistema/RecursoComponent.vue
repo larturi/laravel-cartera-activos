@@ -43,11 +43,6 @@
                     if (result.isConfirmed) {
                         axios.delete(`/api/recursos/${this.recurso.id}`).then( () => {
                             this.$emit('delete');
-                            this.$swal.fire(
-                                'Eliminado!',
-                                'El registro ha sido eliminado',
-                                'success'
-                            );
                         });
                     }
                 });

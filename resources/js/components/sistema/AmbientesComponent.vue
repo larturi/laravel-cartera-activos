@@ -11,7 +11,7 @@
                     <tr>
                     <th scope="col">Ambiente</th>
                     <th scope="col">Url</th>
-                    <th v-if="canedit" scope="col">Acciones</th>
+                    <th v-if="canedit" scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

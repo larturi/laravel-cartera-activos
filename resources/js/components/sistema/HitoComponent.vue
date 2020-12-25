@@ -5,8 +5,8 @@
         <td class="text-nowrap">{{ hito.titulo }}</td>
         <td class="text-nowrap">{{ hito.descripcion }}</td>
         <td v-if="canedit">
-            <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1" v-on:click.prevent="onClickEdit()">Editar</a>
-            <a href="#" class="btn btn-outline-danger btn-sm mr-2 my-1" v-on:click.prevent="onClickDelete()">Borrar</a>
+            <a href="#" class="btn btn-outline-danger btn-sm mr-2 my-1 float-right" v-on:click.prevent="onClickDelete()">Borrar</a>
+            <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1 float-right" v-on:click.prevent="onClickEdit()">Editar</a>
         </td>
 
     </tr>
@@ -41,11 +41,6 @@
                     if (result.isConfirmed) {
                         axios.delete(`/api/hitos-sistema/${this.hito.id}`).then( () => {
                             this.$emit('delete');
-                            this.$swal.fire(
-                                'Eliminado!',
-                                'El hito ha sido eliminado',
-                                'success'
-                            );
                         });
                     }
                 });

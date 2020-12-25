@@ -5,9 +5,8 @@
         <td>{{ repositorio.url_repositorio }}</td>
         <td>{{ repositorio.comentarios }}</td>
         <td v-if="canedit">
-            <a href="#"
-               class="btn btn-outline-danger btn-sm"
-               v-on:click.prevent="onClickDelete()">Borrar</a>
+            <a href="#" class="btn btn-outline-danger btn-sm my-1 float-right" v-on:click.prevent="onClickDelete()">Borrar</a>
+            <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1 float-right" v-on:click.prevent="onClickEdit()">Editar</a>
         </td>
 
     </tr>
@@ -36,15 +35,18 @@
                     if (result.isConfirmed) {
                         axios.delete(`/api/repositorios-sistema/${this.repositorio.id}`).then( () => {
                             this.$emit('delete');
-                            this.$swal.fire(
-                                'Eliminado!',
-                                'El repositorio ha sido eliminado',
-                                'success'
-                            );
                         });
                     }
                 });
             },
+
+            onClickEdit() {
+                axios.get(`/api/repositorio-sistema/${this.repositorio.id}`).then(  response => {
+                    this.$emit("update-repositorio-selected", response.data) ;
+                    $('#modelRepositorioId').modal('toggle');
+                });
+
+            }
         },
 
     }

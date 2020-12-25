@@ -507,6 +507,24 @@ class SistemaController extends Controller
         return $repositorio;
     }
 
+    public function getRepositorio($id)
+    {
+        $repositorio = SistemaRepositorios::where('id', $id)
+                        ->get();
+        return $repositorio;
+    }
+
+    public function updateRepositorio(Request $request)
+    {
+        $this->authorize(Auth()->user());
+
+        return SistemaRepositorios::where('id', $request['repositorio_id'])
+          ->update([
+              'comentarios' => $request['comentarios'],
+              'url_repositorio' => $request['url_repositorio'],
+          ]);
+    }
+
     public function addDocumentationSistema(Request $request)
     {
         $this->authorize(Auth()->user());

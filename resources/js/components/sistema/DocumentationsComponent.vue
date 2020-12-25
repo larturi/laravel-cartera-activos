@@ -12,7 +12,7 @@
                     <th scope="col">Documentación</th>
                     <th scope="col">Link</th>
                     <th scope="col">Comentarios</th>
-                    <th v-if="canedit" scope="col">Acciones</th>
+                    <th v-if="canedit" scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

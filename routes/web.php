@@ -90,6 +90,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/api/repositorios-sistema/{sistema}', 'SistemaController@getRepositoriosSistema')->name('repositorios.get');
     Route::post('/api/repositorios-sistema', 'SistemaController@addRepositorioSistema')->name('repositorios.add');
     Route::delete('/api/repositorios-sistema/{repositorio}', 'SistemaController@deleteRepositorioSistema')->name('repositorios.delete');
+    Route::get('/api/repositorio-sistema/{repositorio}', 'SistemaController@getRepositorio')->name('repositorio.get');
+    Route::put('/api/repositorio-sistema', 'SistemaController@updateRepositorio')->name('repositorio.update');
+
 
     // Documentacions
     Route::get('/api/documentations-sistema/{sistema}', 'SistemaController@getDocumentationsSistema')->name('documentations.get');

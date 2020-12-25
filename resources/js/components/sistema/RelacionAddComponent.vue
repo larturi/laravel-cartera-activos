@@ -73,6 +73,7 @@
                     </div>
 
                     <div v-else>
+
                         <form @submit.prevent="addRelacionToProject()">
 
                             <div class="modal-header">
@@ -131,6 +132,7 @@
                             </div>
 
                         </form>
+
                     </div>
 
                 </div>
@@ -226,6 +228,7 @@
 
             cerrarPopUp() {
                 this.hasErrorUnique = false;
+                this.$emit('update-is-editing', false);
             }
         },
     }

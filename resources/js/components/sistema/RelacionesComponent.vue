@@ -12,7 +12,7 @@
                     <tr>
                     <th scope="col">Sistema</th>
                     <th scope="col">Descripción Relación</th>
-                    <th v-if="canedit" scope="col">Acciones</th>
+                    <th v-if="canedit" scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,7 @@
                         :relaciones="relaciones"
                         :relacionEdit="relacionEdit"
                         :isEditing="isEditing"
-                        @update-isEditing="onUpdateIsEditing(state = false)"
+                        @update-is-editing="onUpdateIsEditing(state = false)"
                     >
                     </relacion-add-component>
                 </div>

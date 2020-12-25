@@ -4,8 +4,8 @@
             <td>{{ relacion.sistema.nombre }}</td>
             <td>{{ relacion.descripcion }}</td>
             <td v-if="canedit">
-                <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1" v-on:click.prevent="onClickEdit()">Editar</a>
-                <a href="#" class="btn btn-outline-danger btn-sm" v-on:click.prevent="onClickDelete()">Borrar</a>
+                <a href="#" class="btn btn-outline-danger btn-sm my-1 float-right" v-on:click.prevent="onClickDelete()">Borrar</a>
+                <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1 float-right" v-on:click.prevent="onClickEdit()">Editar</a>
             </td>
 
         </tr>

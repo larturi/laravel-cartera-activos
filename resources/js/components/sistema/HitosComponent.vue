@@ -12,7 +12,7 @@
                     <th scope="col">Fecha</th>
                     <th scope="col">Título</th>
                     <th scope="col">Descripción del Hito</th>
-                    <th v-if="canedit" scope="col">Acciones</th>
+                    <th v-if="canedit" scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

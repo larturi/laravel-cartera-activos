@@ -121,6 +121,11 @@ class UserPolicy
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
     }
 
+    public function updateRepositorio(User $authUser, User $user)
+    {
+        return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
+    }
+
     public function addDocumentationSistema(User $authUser, User $user)
     {
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
