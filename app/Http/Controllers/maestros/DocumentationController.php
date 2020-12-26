@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 
 use App\Models\Documentation;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Documentacion\DocumentacionService;
+use App\Services\Maestros\DocumentacionService;
 
 class DocumentationController extends Controller
 {
@@ -29,45 +29,16 @@ class DocumentationController extends Controller
 
     public function index()
     {
-        return $this->documentacionService->getDocumentacion();
+        return $this->documentacionService->getAll();
     }
 
     public function store(Request $request)
     {
-        if(Documentation::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $documentation = new Documentation();
-        $documentation->nombre = $request->nombre;
-        $documentation->user_id = auth()->id();
-        $documentation->save();
-
-        return $documentation;
+        return $this->documentacionService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-        if(Documentation::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $documentation = Documentation::find($id);
-        $documentation->nombre = $request->nombre;
-        $documentation->user_id = auth()->id();
-        $documentation->save();
-
-        return $documentation;
-
-    }
-
-    public function destroy($id)
-    {
-        $documentation = Documentation::find($id);
-        $documentation->habilitado = false;
-        $documentation->user_id = auth()->id();
-        $documentation->save();
-
-        return $documentation;
+        return $this->documentacionService->update($request, $id);
     }
 }

@@ -4,7 +4,9 @@
   <maestros-component
       name="cliente"
       pluralname="clientes"
-      description="Desde aqui se pueden administrar las areas cliente de la organización."
+      titulo="Clientes"
+      placeholder="Cliente"
+      description="Desde aqui se pueden administrar las areas cliente de la organización"
    >
   </maestros-component>
 @endsection

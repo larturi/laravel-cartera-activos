@@ -2,7 +2,7 @@
 
 namespace App\Services\Sistema;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use DB;
 
@@ -28,6 +28,7 @@ class SistemaService extends BaseService
             $recurso_id = $request['recurso_id'];
             $estado_id = $request['estado_id'];
             $criticidad_id = $request['criticidad_id'];
+            $cliente_id = $request['cliente_id'];
             $lenguaje_id = $request['lenguaje_id'];
             $base_id = $request['base_id'];
             $login_id = $request['login_id'];
@@ -69,6 +70,10 @@ class SistemaService extends BaseService
 
             if ($criticidad_id != '') {
                 $query = $query->where('criticidad_id', '=', $criticidad_id);
+            }
+
+            if ($cliente_id != '') {
+                $query = $query->where('cliente_id', '=', $cliente_id);
             }
 
             if ($login_id != '') {

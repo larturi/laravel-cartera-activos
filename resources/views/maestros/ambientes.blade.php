@@ -5,6 +5,8 @@
     <maestros-component
         name="ambiente"
         pluralname="ambientes"
+        titulo="Ambientes"
+        placeholder="Ambiente"
         description="Desde aqui se pueden administrar los ambientes de desarrollo de los sistemas"
     >
     </maestros-component>

@@ -8,7 +8,7 @@
                            class="form-control"
                            v-model="maestro"
                            :name="name"
-                           :placeholder="`Agregar ${capitalizeFirstLetter(name)}`">
+                           :placeholder="`Agregar ${placeholder}`">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
@@ -33,7 +33,7 @@
 import {capitalizeFirstLetter} from '../../helpers';
 
     export default {
-        props: ['name', 'pluralname'],
+        props: ['name', 'pluralname', 'placeholder'],
         data() {
             return {
                 maestro: '',
@@ -46,6 +46,8 @@ import {capitalizeFirstLetter} from '../../helpers';
                 const params = {
                     nombre: this.maestro
                 };
+
+                this.maestro = '';
 
                 axios.post(`/api/${this.pluralname}`, params)
                    .then( response => {

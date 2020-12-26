@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Model;

@@ -1,4 +1,4 @@
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 require('./bootstrap');
 

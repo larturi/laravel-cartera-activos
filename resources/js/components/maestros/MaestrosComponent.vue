@@ -5,14 +5,14 @@
             <div class="card card-primary">
 
                 <div class="card-header">
-                   <h3 class="card-title text-center">{{ capitalizeFirstLetter(pluralname) }}</h3>
+                   <h3 class="card-title text-center">{{ capitalizeFirstLetter(titulo) }}</h3>
                 </div>
 
                 <div class="card-body p-0 table-responsive" style="display: block;">
 
                     <div class="row mt-4 mx-4">
                         <div class="col">
-                            <p class="text-muted">{{ description }}</p>
+                            <p class="text-muted">{{ description }}.</p>
                         </div>
                     </div>
 
@@ -26,6 +26,7 @@
                                 @new="addMaestro"
                                 :name="name"
                                 :pluralname="pluralname"
+                                :placeholder="placeholder"
                                 :description="description">
                             </maestro-alta-component>
 
@@ -35,12 +36,17 @@
                                     :readonly="readonly"
                                     :maestro="maestro"
                                     :pluralname="pluralname"
-                                    @update="updateMaestro(index, ...arguments)"
-                                    @delete="deleteMaestro(index)">
+                                    @update="updateMaestro(index, ...arguments)">
                             </maestro-component>
                         </div>
                     </div>
 
+                </div>
+
+                <div class="row mt-2 mx-4">
+                    <div class="col">
+                        <p class="text-muted"><span class="fas fa-info-circle mr-1"></span>Los elementos en estado deshabilitado no podran seleccionarse al dar de alta nuevos sistemas.</p>
+                    </div>
                 </div>
 
             </div>
@@ -53,7 +59,7 @@
 import {capitalizeFirstLetter} from '../../helpers';
 
     export default {
-        props: ['name', 'pluralname', 'description', 'readonly'],
+        props: ['name', 'pluralname', 'description', 'readonly', 'titulo', 'placeholder'],
         data() {
             return {
                 maestros: [],
@@ -71,9 +77,6 @@ import {capitalizeFirstLetter} from '../../helpers';
             capitalizeFirstLetter,
             addMaestro(maestro) {
                 this.maestros.push(maestro);
-            },
-            deleteMaestro(index) {
-                this.maestros.splice(index, 1);
             },
             updateMaestro(index, maestro) {
                 this.maestros[index] = maestro;

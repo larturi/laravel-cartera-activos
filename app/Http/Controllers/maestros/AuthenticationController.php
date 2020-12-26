@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 
 use App\Models\Authentication;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Authentication\AuthenticationService;
+use App\Services\Maestros\AuthenticationService;
 
 class AuthenticationController extends Controller
 {
@@ -34,41 +34,13 @@ class AuthenticationController extends Controller
 
     public function store(Request $request)
     {
-        if(Authentication::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $authentication = new Authentication();
-        $authentication->nombre = $request->nombre;
-        $authentication->user_id = auth()->id();
-        $authentication->save();
-
-        return $authentication;
+        return $this->authenticationService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-        if(Authentication::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $authentication = Authentication::find($id);
-        $authentication->nombre = $request->nombre;
-        $authentication->user_id = auth()->id();
-        $authentication->save();
-
-        return $authentication;
-
+        return $this->authenticationService->update($request, $id);
     }
 
-    public function destroy($id)
-    {
-        $authentication = Authentication::find($id);
-        $authentication->habilitado = false;
-        $authentication->user_id = auth()->id();
-        $authentication->save();
-
-        return $authentication;
-    }
 }
 

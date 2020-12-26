@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Models\Lenguaje;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Services\Maestros\Lenguaje\LenguajeService;
+use App\Services\Maestros\LenguajeService;
 
 class LenguajeController extends Controller
 {
@@ -33,41 +33,12 @@ class LenguajeController extends Controller
 
     public function store(Request $request)
     {
-        if(Lenguaje::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $lenguaje = new Lenguaje();
-        $lenguaje->nombre = $request->nombre;
-        $lenguaje->user_id = auth()->id();
-        $lenguaje->save();
-
-        return $lenguaje;
+        return $this->lenguajeService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-        if(Lenguaje::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $lenguaje = Lenguaje::find($id);
-        $lenguaje->nombre = $request->nombre;
-        $lenguaje->user_id = auth()->id();
-        $lenguaje->save();
-
-        return $lenguaje;
-
-    }
-
-    public function destroy($id)
-    {
-        $lenguaje = Lenguaje::find($id);
-        $lenguaje->habilitado = false;
-        $lenguaje->user_id = auth()->id();
-        $lenguaje->save();
-
-        return $lenguaje;
+        return $this->lenguajeService->update($request, $id);
     }
 }
 

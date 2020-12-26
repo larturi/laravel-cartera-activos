@@ -2,7 +2,7 @@
 
 namespace App\Services\Usuario;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use DB;
 

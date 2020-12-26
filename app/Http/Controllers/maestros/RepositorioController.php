@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 
 use App\Models\Repositorio;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Repositorio\RepositorioService;
+use App\Services\Maestros\RepositorioService;
 
 class RepositorioController extends Controller
 {
@@ -34,42 +34,12 @@ class RepositorioController extends Controller
 
     public function store(Request $request)
     {
-
-        if(Repositorio::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $repositorio = new Repositorio();
-        $repositorio->nombre = $request->nombre;
-        $repositorio->user_id = auth()->id();
-        $repositorio->save();
-
-        return $repositorio;
+        return $this->repositorioService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-        if(Repositorio::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $repositorio = Repositorio::find($id);
-        $repositorio->nombre = $request->nombre;
-        $repositorio->user_id = auth()->id();
-        $repositorio->save();
-
-        return $repositorio;
-
-    }
-
-    public function destroy($id)
-    {
-        $repositorio = Repositorio::find($id);
-        $repositorio->habilitado = false;
-        $repositorio->user_id = auth()->id();
-        $repositorio->save();
-
-        return $repositorio;
+        return $this->repositorioService->update($request, $id);
     }
 }
 

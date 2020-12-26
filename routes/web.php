@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/api/miembros', 'SistemaController@getMiembrosAll')->name('miembros');
 
     // Roles
-    Route::get('/api/roles', 'SistemaController@getRolesAll')->name('roles');
+    // Route::get('/api/roles', 'SistemaController@getRolesAll')->name('roles');
 
     // Recursos
     Route::get('/api/recursos/{sistema}', 'SistemaController@getRecursosSistema')->name('recursos.get');
@@ -92,7 +92,6 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::delete('/api/repositorios-sistema/{repositorio}', 'SistemaController@deleteRepositorioSistema')->name('repositorios.delete');
     Route::get('/api/repositorio-sistema/{repositorio}', 'SistemaController@getRepositorio')->name('repositorio.get');
     Route::put('/api/repositorio-sistema', 'SistemaController@updateRepositorio')->name('repositorio.update');
-
 
     // Documentacions
     Route::get('/api/documentations-sistema/{sistema}', 'SistemaController@getDocumentationsSistema')->name('documentations.get');

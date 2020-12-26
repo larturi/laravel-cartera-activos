@@ -2,9 +2,9 @@
 
 @section('content')
   <maestros-component
-      name="rol"
+      name="role"
       pluralname="roles"
-      description="Desde aqui se pueden administrar los roles que ocupan los Recursos de la gerencia de Sistemas."
+      description="Desde aqui se pueden administrar los roles que ocupan los Recursos de la gerencia de Sistemas"
    >
   </maestros-component>
 @endsection

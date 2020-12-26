@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
+
+use App\Models\Ambiente;
+
+use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Ambiente;
-use Illuminate\Http\Request;
-
-use App\Services\Maestros\Ambiente\AmbienteService;
+use App\Services\Maestros\AmbienteService;
 
 class AmbienteController extends Controller
 {
@@ -35,41 +36,13 @@ class AmbienteController extends Controller
 
     public function store(Request $request)
     {
-        if(Ambiente::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $ambiente = new Ambiente();
-        $ambiente->nombre = $request->nombre;
-        $ambiente->user_id = auth()->id();
-        $ambiente->save();
-
-        return $ambiente;
+        return $this->ambienteService->store($request, $id);
     }
 
     public function update(Request $request, $id)
     {
-        if(Ambiente::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $ambiente = Ambiente::find($id);
-        $ambiente->nombre = $request->nombre;
-        $ambiente->user_id = auth()->id();
-        $ambiente->save();
-
-        return $ambiente;
-
+        return $this->ambienteService->update($request, $id);
     }
 
-    public function destroy($id)
-    {
-        $ambiente = Ambiente::find($id);
-        $ambiente->habilitado = false;
-        $ambiente->user_id = auth()->id();
-        $ambiente->save();
-
-        return $ambiente;
-    }
 }
 

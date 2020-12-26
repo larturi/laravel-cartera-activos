@@ -5,7 +5,9 @@
     <maestros-component
         name="authentication"
         pluralname="authentications"
-        description="Desde aqui se pueden administrar las formas de autenticar que tienen los sistemas."
+        titulo="Tipos de Autenticación"
+        placeholder="Tipo de Autenticación"
+        description="Desde aqui se pueden administrar las formas de autenticar que tienen los sistemas"
     >
     </maestros-component>
 </section>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -32,13 +32,13 @@ use App\Models\SistemaDocumentations;
 use App\Models\SistemaCaracteristicas;
 
 use App\Services\Sistema\SistemaService;
-use App\Services\Maestros\Cliente\ClienteService;
-use App\Services\Maestros\Authentication\AuthenticationService;
-use App\Services\Maestros\Estado\EstadoService;
-use App\Services\Maestros\Criticidad\CriticidadService;
-use App\Services\Maestros\Lenguaje\LenguajeService;
-use App\Services\Maestros\Bases\BasesService;
-use App\Services\Maestros\Impacto\ImpactoService;
+use App\Services\Maestros\ClienteService;
+use App\Services\Maestros\AuthenticationService;
+use App\Services\Maestros\EstadoService;
+use App\Services\Maestros\CriticidadService;
+use App\Services\Maestros\LenguajeService;
+use App\Services\Maestros\BasesService;
+use App\Services\Maestros\ImpactoService;
 
 class SistemaController extends Controller
 {
@@ -244,14 +244,6 @@ class SistemaController extends Controller
     public function getMiembrosAll()
     {
         $miembros = User::select('id', 'name', 'apellido')
-                        ->where('habilitado', true)
-                        ->get();
-        return $miembros;
-    }
-
-    public function getRolesAll()
-    {
-        $miembros = Role::select('id', 'nombre')
                         ->where('habilitado', true)
                         ->get();
         return $miembros;

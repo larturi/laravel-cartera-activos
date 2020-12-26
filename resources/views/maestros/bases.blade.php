@@ -4,7 +4,9 @@
   <maestros-component
       name="base"
       pluralname="bases"
-      description="Desde aqui se pueden administrar los motores de bases de datos utilizados."
+      titulo="Motores de Base de Datos"
+      placeholder="Motor de Base de Datos"
+      description="Desde aqui se pueden administrar los motores de bases de datos utilizados"
    >
   </maestros-component>
 @endsection

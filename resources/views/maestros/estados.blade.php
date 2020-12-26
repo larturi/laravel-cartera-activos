@@ -4,6 +4,8 @@
   <maestros-component
       name="estado"
       pluralname="estados"
+      titulo="Estados"
+      placeholder="Estado"
       description="Desde aqui se pueden administrar los estados de los sistemas."
    >
   </maestros-component>

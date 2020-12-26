@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 
 use App\Models\Impacto;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Impacto\ImpactoService;
+use App\Services\Maestros\ImpactoService;
 
 class ImpactoController extends Controller
 {
@@ -34,40 +34,11 @@ class ImpactoController extends Controller
 
     public function store(Request $request)
     {
-        if(Impacto::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $impacto = new Impacto();
-        $impacto->nombre = $request->nombre;
-        $impacto->user_id = auth()->id();
-        $impacto->save();
-
-        return $impacto;
+        return $this->impactoService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-        if(Impacto::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $impacto = Impacto::find($id);
-        $impacto->nombre = $request->nombre;
-        $impacto->user_id = auth()->id();
-        $impacto->save();
-
-        return $impacto;
-
-    }
-
-    public function destroy($id)
-    {
-        $impacto = Impacto::find($id);
-        $impacto->habilitado = false;
-        $impacto->user_id = auth()->id();
-        $impacto->save();
-
-        return $impacto;
+        return $this->impactoService->update($request, $id);
     }
 }

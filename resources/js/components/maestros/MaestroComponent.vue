@@ -18,8 +18,10 @@
                     v-model="maestro.nombre">
 
         <div v-if="!readonly" class="input-group-append">
-            <a href="#" class="btn btn-danger" v-on:click.prevent="onClickDelete()">Eliminar</a>
-            <a href="#" class="btn btn-primary" v-if="!editMode" v-on:click.prevent="onClickEdit()">Editar</a>
+            <a href="#" class="btn btn-success" v-if="maestro.habilitado && !editMode" v-on:click.prevent="onClickDeshabilitar()">Habilitado</a>
+            <a href="#" class="btn btn-danger" v-if="!maestro.habilitado && !editMode" v-on:click.prevent="onClickHabilitar()">Deshabilitado</a>
+            <a href="#" class="btn btn-primary" v-if="!editMode && maestro.habilitado" v-on:click.prevent="onClickEdit()">Editar</a>
+            <a href="#" class="btn btn-secondary" v-if="editMode" v-on:click.prevent="onClickCancel()">Cancelar</a>
             <a href="#" class="btn btn-primary" v-if="editMode" v-on:click.prevent="onClickUpdate()">Guardar</a>
         </div>
 
@@ -34,7 +36,8 @@
             readonly: false,
             maestro: {
                     'id': '',
-                    'nombre': ''
+                    'nombre': '',
+                    'habilitado': true
                 },
         },
         data() {
@@ -47,13 +50,29 @@
 
         },
         methods: {
-            onClickDelete() {
-                axios.delete(`/api/${this.pluralname}/${this.maestro.id}`).then( () => {
-                    this.$emit('delete');
+            onClickDeshabilitar() {
+                const params = {
+                    nombre: this.maestro.nombre,
+                    habilitado: false
+                };
+                axios.put(`/api/${this.pluralname}/${this.maestro.id}`, params).then( (response) => {
+                    this.maestro.habilitado = false;
+                });
+            },
+            onClickHabilitar() {
+                const params = {
+                    nombre: this.maestro.nombre,
+                    habilitado: true
+                };
+                axios.put(`/api/${this.pluralname}/${this.maestro.id}`, params).then( (response) => {
+                    this.maestro.habilitado = true;
                 });
             },
             onClickEdit () {
                 this.editMode = true;
+            },
+            onClickCancel () {
+                this.editMode = false;
             },
             onClickUpdate() {
                 const params = {
@@ -80,3 +99,5 @@
         },
     }
 </script>
+
+

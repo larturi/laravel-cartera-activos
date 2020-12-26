@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 
@@ -10,7 +10,7 @@ use App\Models\Base;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Services\Maestros\Bases\BasesService;
+use App\Services\Maestros\BasesService;
 
 class BaseController extends Controller
 {
@@ -35,41 +35,12 @@ class BaseController extends Controller
 
     public function store(Request $request)
     {
-        if(Base::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $base = new Base();
-        $base->nombre = $request->nombre;
-        $base->user_id = auth()->id();
-        $base->save();
-
-        return $base;
+        return $this->basesService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-        if(Base::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $base = Base::find($id);
-        $base->nombre = $request->nombre;
-        $base->user_id = auth()->id();
-        $base->save();
-
-        return $base;
-
-    }
-
-    public function destroy($id)
-    {
-        $base = Base::find($id);
-        $base->habilitado = false;
-        $base->user_id = auth()->id();
-        $base->save();
-
-        return $base;
+        return $this->basesService->update($request, $id);
     }
 }
 

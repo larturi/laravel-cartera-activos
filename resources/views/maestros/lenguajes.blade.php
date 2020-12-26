@@ -4,7 +4,9 @@
   <maestros-component
       name="lenguaje"
       pluralname="lenguajes"
-      description="Desde aqui se pueden administrar los lenguajes de programación utilizados."
+      titulo="Lenguajes y Tecnologías de Desarrollo"
+      placeholder="Lenguaje / Tecnología"
+      description="Desde aqui se pueden administrar los lenguajes de programación utilizados"
    >
   </maestros-component>
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;

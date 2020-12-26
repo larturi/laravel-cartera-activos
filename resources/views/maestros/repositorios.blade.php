@@ -4,7 +4,9 @@
   <maestros-component
       name="repositorio"
       pluralname="repositorios"
-      description="Desde aqui se pueden administrar las tecnologias utilizadas para versionado y control de cambios."
+      titulo="Repositorios y Versionado"
+      placeholder="Repositorio"
+      description="Desde aqui se pueden administrar las tecnologias utilizadas para versionado y control de cambios"
    >
   </maestros-component>
 @endsection

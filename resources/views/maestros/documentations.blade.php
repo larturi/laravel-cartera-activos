@@ -4,6 +4,8 @@
   <maestros-component
       name="documentation"
       pluralname="documentations"
+      titulo="Documentos"
+      placeholder="Documento"
       description="Desde aqui se puede administrar la documentación requerida de los sistemas."
    >
   </maestros-component>

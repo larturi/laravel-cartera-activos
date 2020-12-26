@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Cliente\ClienteService;
+use App\Services\Maestros\ClienteService;
 
 class ClienteController extends Controller
 {
@@ -34,41 +34,12 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        if(Cliente::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $cliente = new Cliente();
-        $cliente->nombre = $request->nombre;
-        $cliente->user_id = auth()->id();
-        $cliente->save();
-
-        return $cliente;
+        return $this->clienteService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-        if(Cliente::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $cliente = Cliente::find($id);
-        $cliente->nombre = $request->nombre;
-        $cliente->user_id = auth()->id();
-        $cliente->save();
-
-        return $cliente;
-
-    }
-
-    public function destroy($id)
-    {
-        $cliente = Cliente::find($id);
-        $cliente->habilitado = false;
-        $cliente->user_id = auth()->id();
-        $cliente->save();
-
-        return $cliente;
+        return $this->clienteService->update($request, $id);
     }
 }
 

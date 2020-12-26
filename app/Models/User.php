@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Models\Sistema;
 use Illuminate\Support\Facades\Auth;

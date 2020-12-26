@@ -4,7 +4,9 @@
   <maestros-component
       name="impacto"
       pluralname="impactos"
-      description="Desde aqui se pueden administrar los valores que indican en que público tiene impacto el sistema."
+      titulo="Impacto"
+      placeholder="Impacto"
+      description="Desde aqui se pueden administrar los valores que indican en que público tiene impacto el sistema"
    >
   </maestros-component>
 @endsection

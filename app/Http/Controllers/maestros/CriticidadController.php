@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 
@@ -10,7 +10,7 @@ use App\Models\Cliente;
 use App\Models\Criticidad;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Criticidad\CriticidadService;
+use App\Services\Maestros\CriticidadService;
 
 class CriticidadController extends Controller
 {
@@ -35,42 +35,12 @@ class CriticidadController extends Controller
 
     public function store(Request $request)
     {
-        if(Criticidad::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $criticidad = new Criticidad();
-        $criticidad->nombre = $request->nombre;
-        $criticidad->user_id = auth()->id();
-        $criticidad->save();
-
-        return $criticidad;
+        return $this->criticidadService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-
-        if(Criticidad::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $criticidad = Criticidad::find($id);
-        $criticidad->nombre = $request->nombre;
-        $criticidad->user_id = auth()->id();
-        $criticidad->save();
-
-        return $criticidad;
-
-    }
-
-    public function destroy($id)
-    {
-        $criticidad = Criticidad::find($id);
-        $criticidad->habilitado = false;
-        $criticidad->user_id = auth()->id();
-        $criticidad->save();
-
-        return $criticidad;
+        return $this->criticidadService->update($request, $id);
     }
 }
 

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
 use App\Models\Estado;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Estado\EstadoService;
+use App\Services\Maestros\EstadoService;
 
 class EstadoController extends Controller
 {
@@ -33,42 +33,12 @@ class EstadoController extends Controller
 
     public function store(Request $request)
     {
-        if(Estado::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $estado = new Estado();
-        $estado->nombre = $request->nombre;
-        $estado->user_id = auth()->id();
-        $estado->save();
-
-        return $estado;
+        return $this->estadoService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-
-        if(Estado::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $estado = Estado::find($id);
-        $estado->nombre = $request->nombre;
-        $estado->user_id = auth()->id();
-        $estado->save();
-
-        return $estado;
-
-    }
-
-    public function destroy($id)
-    {
-        $estado = Estado::find($id);
-        $estado->habilitado = false;
-        $estado->user_id = auth()->id();
-        $estado->save();
-
-        return $estado;
+        return $this->estadoService->update($request, $id);
     }
 }
 

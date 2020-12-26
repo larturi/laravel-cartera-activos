@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\maestros;
 
-//  @author [Leandro Arturi (larturi@pami.org.ar)]
+// @author: Leandro Arturi (u57322)
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Role;
 use Illuminate\Http\Request;
 
-use App\Services\Maestros\Role\RoleService;
+use App\Services\Maestros\RoleService;
 
 class RoleController extends Controller
 {
@@ -33,42 +34,12 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        if(Role::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $role = new Role();
-        $role->nombre = $request->nombre;
-        $role->user_id = auth()->id();
-        $role->save();
-
-        return $role;
+        return $this->roleService->store($request);
     }
 
     public function update(Request $request, $id)
     {
-
-        if(Role::where('nombre', $request->nombre)->count() > 0) {
-            return json_encode(['error' => 'ERROR_UNIQUE']);
-        }
-
-        $role = Role::find($id);
-        $role->nombre = $request->nombre;
-        $role->user_id = auth()->id();
-        $role->save();
-
-        return $role;
-
+        return $this->roleService->update($request, $id);
     }
-
-    public function destroy($id)
-    {
-        $role = Role::find($id);
-        $role->habilitado = false;
-        $role->user_id = auth()->id();
-        $role->save();
-
-        return $role;
-    }
-
 }
+
