@@ -32,6 +32,11 @@ class DocumentationController extends Controller
         return $this->documentacionService->getAll();
     }
 
+    public function habilitados()
+    {
+        return $this->documentacionService->habilitados();
+    }
+
     public function store(Request $request)
     {
         return $this->documentacionService->store($request);

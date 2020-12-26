@@ -22,6 +22,11 @@ class DocumentacionService extends BaseService
      return $this->maestroGenericService->getAll(Documentation::class);
   }
 
+  public function habilitados()
+  {
+     return $this->maestroGenericService->habilitados(Documentation::class);
+  }
+
   public function store($request)
   {
       return $this->maestroGenericService->store(Documentation::class, $request);

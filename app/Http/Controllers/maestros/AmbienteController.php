@@ -8,8 +8,9 @@ use App\Models\Ambiente;
 
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
+use App\Http\Controllers\Controller;
 use App\Services\Maestros\AmbienteService;
 
 class AmbienteController extends Controller
@@ -32,6 +33,11 @@ class AmbienteController extends Controller
     public function index()
     {
         return $this->ambienteService->getAll();
+    }
+
+    public function habilitados()
+    {
+        return $this->ambienteService->habilitados();
     }
 
     public function store(Request $request)

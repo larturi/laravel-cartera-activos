@@ -123,7 +123,7 @@ class SistemaController extends Controller
         $this->authorize(Auth()->user());
 
         // Consultas
-        $clientes           = Cliente::all();
+        $clientes           = Cliente::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
         $lideres            = User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
         $authentications    = Authentication::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
         $estados            = Estado::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
@@ -174,7 +174,7 @@ class SistemaController extends Controller
 
     public function show(Sistema $sistema)
     {
-        $clientes           = Cliente::all();
+        $clientes           = Cliente::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
         $lideres            = User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
         $authentications    = Authentication::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
         $estados            = Estado::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();

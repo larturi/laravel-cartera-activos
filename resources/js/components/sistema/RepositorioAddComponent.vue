@@ -144,7 +144,7 @@ import {validURL} from '../../helpers';
         },
 
         mounted() {
-            axios.get(`/api/repositorios`).then( response => {
+            axios.get(`/api/repositorios/habilitados`).then( response => {
 
                 let repositoriosSelect = [{ value: null, text: '-- Seleccionar Repositorio --' }];
 

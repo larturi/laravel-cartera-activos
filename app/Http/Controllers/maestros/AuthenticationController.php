@@ -27,6 +27,11 @@ class AuthenticationController extends Controller
         return view('maestros/authentications');
     }
 
+    public function habilitados()
+    {
+        return $this->authenticationService->habilitados();
+    }
+
     public function index()
     {
         return $this->authenticationService->getAll();

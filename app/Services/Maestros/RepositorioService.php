@@ -22,6 +22,11 @@ class RepositorioService extends BaseService
          return $this->maestroGenericService->getAll(Repositorio::class);
       }
 
+      public function habilitados()
+      {
+         return $this->maestroGenericService->habilitados(Repositorio::class);
+      }
+
       public function store($request)
       {
           return $this->maestroGenericService->store(Repositorio::class, $request);

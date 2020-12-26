@@ -175,7 +175,8 @@ import {validURL} from '../../helpers';
         },
 
         mounted() {
-            axios.get(`/api/ambientes`).then( response => {
+
+            axios.get(`/api/ambientes/habilitados`).then( response => {
 
                 let ambientesSelect = [{ value: null, text: '-- Seleccionar Ambiente --' }];
 

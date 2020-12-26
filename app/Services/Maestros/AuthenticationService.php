@@ -22,6 +22,11 @@ class AuthenticationService extends BaseService
      return $this->maestroGenericService->getAll(Authentication::class);
   }
 
+  public function habilitados()
+  {
+     return $this->maestroGenericService->habilitados(Ambiente::class);
+  }
+
   public function store($request)
   {
       return $this->maestroGenericService->store(Authentication::class, $request);

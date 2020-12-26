@@ -23,6 +23,11 @@ class AmbienteService extends BaseService
      return $this->maestroGenericService->getAll(Ambiente::class);
   }
 
+  public function habilitados()
+  {
+     return $this->maestroGenericService->habilitados(Ambiente::class);
+  }
+
   public function store($request)
   {
       return $this->maestroGenericService->store(Ambiente::class, $request);

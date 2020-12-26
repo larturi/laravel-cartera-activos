@@ -13,6 +13,11 @@ class MaestroGenericService extends BaseService
      return $model::orderBy('habilitado', 'desc')->orderBy('nombre', 'asc')->get();
   }
 
+  public function habilitados($model)
+  {
+     return $model::where('habilitado', '=', true)->orderBy('nombre', 'asc')->get();
+  }
+
   public function update($model, $request, $id)
   {
     if (!isset($request->habilitado)) {

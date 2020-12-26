@@ -85,7 +85,7 @@ import {validURL} from '../../helpers';
         },
 
         mounted() {
-            axios.get(`/api/documentations`).then( response => {
+            axios.get(`/api/documentations/habilitados`).then( response => {
 
                 let documentationsSelect = [{ value: null, text: '-- Seleccionar Documentación --' }];
 

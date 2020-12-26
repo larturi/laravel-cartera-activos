@@ -32,6 +32,11 @@ class RepositorioController extends Controller
         return $this->repositorioService->getAll();
     }
 
+    public function habilitados()
+    {
+        return $this->repositorioService->habilitados();
+    }
+
     public function store(Request $request)
     {
         return $this->repositorioService->store($request);
