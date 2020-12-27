@@ -45,8 +45,8 @@
                     this.$emit("update-repositorio-selected", response.data) ;
                     $('#modelRepositorioId').modal('toggle');
                 });
-
             }
+
         },
 
     }

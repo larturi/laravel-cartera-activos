@@ -136,6 +136,11 @@ class UserPolicy
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
     }
 
+    public function updateDocumentation(User $authUser, User $user)
+    {
+        return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';
+    }
+
     public function addHitoSistema(User $authUser, User $user)
     {
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA' || $authUser->perfil === 'EDICION';

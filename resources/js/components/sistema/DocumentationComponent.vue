@@ -6,6 +6,7 @@
         <td class="text-nowrap">{{ documentation.comentarios }}</td>
         <td v-if="canedit">
             <a href="#" class="btn btn-outline-success btn-sm my-1 float-right" v-on:click.prevent="onClickOpenUrl()">Abrir</a>
+            <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1 float-right" v-on:click.prevent="onClickEdit()">Editar</a>
             <a href="#" class="btn btn-outline-danger btn-sm mr-2 my-1 float-right" v-on:click.prevent="onClickDelete()">Borrar</a>
         </td>
 
@@ -37,6 +38,13 @@
                             this.$emit('delete');
                         });
                     }
+                });
+            },
+
+            onClickEdit() {
+                axios.get(`/api/documentation-sistema/${this.documentation.id}`).then(  response => {
+                    this.$emit("update-documentation-selected", response.data) ;
+                    $('#modelDocumentationId').modal('toggle');
                 });
             },
 

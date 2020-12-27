@@ -75,11 +75,11 @@
 
                             <div class="modal-body">
 
-                                <b-form-select v-model="repositorioEdit.repositorio_id"
-                                            :options="repositorios"
-                                            disabled
-                                            class="mb-3">
-                                </b-form-select>
+
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    disabled
+                                    :value="repositorioEdit.repositorio.nombre">
 
                                 <input type="text"
                                     class="form-control"

@@ -118,6 +118,7 @@
                            this.hasErrorUnique = true;
                        } else {
                             const recurso = response.data;
+                            this.hasErrorUnique = false;
                             this.$emit('new', recurso);
                        }
                    });

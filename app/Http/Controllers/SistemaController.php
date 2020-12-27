@@ -174,15 +174,15 @@ class SistemaController extends Controller
 
     public function show(Sistema $sistema)
     {
-        $clientes           = Cliente::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
+        $clientes           = Cliente::orderBy('nombre', 'asc')->get();
         $lideres            = User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
-        $authentications    = Authentication::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
-        $estados            = Estado::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
-        $criticidades       = Criticidad::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
-        $lenguajes          = Lenguaje::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
-        $bases              = Base::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
-        $impactos           = Impacto::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
-        $ambientes          = Ambiente::where('habilitado', '=', 1)->orderBy('nombre', 'asc')->get();
+        $authentications    = Authentication::orderBy('nombre', 'asc')->get();
+        $estados            = Estado::orderBy('nombre', 'asc')->get();
+        $criticidades       = Criticidad::orderBy('nombre', 'asc')->get();
+        $lenguajes          = Lenguaje::orderBy('nombre', 'asc')->get();
+        $bases              = Base::orderBy('nombre', 'asc')->get();
+        $impactos           = Impacto::orderBy('nombre', 'asc')->get();
+        $ambientes          = Ambiente::orderBy('nombre', 'asc')->get();
 
         return view('sistema.show')
            ->with('sistema', $sistema)
@@ -555,6 +555,24 @@ class SistemaController extends Controller
         $documentation = SistemaDocumentations::find($id)->delete();
 
         return $documentation;
+    }
+
+    public function getDocumentation($id)
+    {
+        $documentation = SistemaDocumentations::where('id', $id)
+                        ->get();
+        return $documentation;
+    }
+
+    public function updateDocumentation(Request $request)
+    {
+        $this->authorize(Auth()->user());
+
+        return SistemaDocumentations::where('id', $request['documentation_id'])
+          ->update([
+              'comentarios' => $request['comentarios'],
+              'url_document' => $request['url_document'],
+          ]);
     }
 
     public function addHitoSistema(Request $request)

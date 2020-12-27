@@ -79,11 +79,7 @@
         },
 
         mounted() {
-            this.loading = true;
-            axios.get(`/api/recursos/${this.sistema.id}`).then( response => {
-                this.recursos = response.data;
-                this.loading = false;
-            });
+            this.refresh();
         },
 
         methods: {
@@ -91,8 +87,15 @@
                 this.recursos.push(...recurso);
             },
             deleteRecurso(recurso) {
-                this.recursos.splice(recurso, 1);
+                this.refresh();
             },
+            refresh() {
+                this.loading = true;
+                axios.get(`/api/recursos/${this.sistema.id}`).then( response => {
+                  this.recursos = response.data;
+                  this.loading = false;
+                });
+            }
         },
 
     }

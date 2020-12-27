@@ -109,10 +109,12 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/api/repositorio-sistema/{repositorio}', 'SistemaController@getRepositorio')->name('repositorio.get');
     Route::put('/api/repositorio-sistema', 'SistemaController@updateRepositorio')->name('repositorio.update');
 
-    // Documentacions
+    // Documentations
     Route::get('/api/documentations-sistema/{sistema}', 'SistemaController@getDocumentationsSistema')->name('documentations.get');
     Route::post('/api/documentations-sistema', 'SistemaController@addDocumentationSistema')->name('documentations.add');
     Route::delete('/api/documentations-sistema/{documentation}', 'SistemaController@deleteDocumentationSistema')->name('documentations.delete');
+    Route::get('/api/documentation-sistema/{repositorio}', 'SistemaController@getDocumentation')->name('documentation.get');
+    Route::put('/api/documentation-sistema', 'SistemaController@updateDocumentation')->name('documentation.update');
 
     // Hitos
     Route::get('/api/hitos-sistema/{sistema}', 'SistemaController@getHitosSistema')->name('hitos.get');

@@ -22,7 +22,8 @@
                             :key="documentation.id"
                             :canedit="canedit"
                             @delete="deleteDocumentation(documentation)"
-                            :documentation="documentation">
+                            :documentation="documentation"
+                            @update-documentation-selected="onUpdateItemSelected(documentation)">
                     </documentation-component>
 
                 </tbody>
@@ -42,6 +43,10 @@
                     <documentation-add-component
                         @new="addDocumentation"
                         :sistema="sistemaid"
+                        @update="updateDocumentation(...arguments)"
+                        :documentationEdit="documentationEdit"
+                        :isEditing="isEditing"
+                        @update-is-editing="onUpdateIsEditing(state = false)"
                     >
                     </documentation-add-component>
                 </div>
@@ -61,26 +66,42 @@
         data() {
             return {
                 documentations: [],
-                loading: false
+                loading: false,
+                documentationEdit: {},
+                isEditing: false
             }
         },
 
         mounted() {
-            this.loading = true;
-            axios.get(`/api/documentations-sistema/${this.sistemaid}`).then( response => {
-                this.documentations = response.data;
-                this.loading = false;
-            });
+            this.refresh();
         },
 
         methods: {
 
             addDocumentation(documentation) {
-                this.documentations.push(...documentation);
+                this.refresh();
             },
             deleteDocumentation(documentation) {
-                this.documentations.splice(documentation, 1);
+                this.refresh();
             },
+            updateDocumentation(documentation) {
+                this.refresh();
+            },
+            onUpdateIsEditing(state) {
+                this.isEditing = state;
+            },
+            onUpdateItemSelected(documentation) {
+                this.documentationEdit = {...documentation};
+                this.isEditing = true;
+            },
+            refresh() {
+                this.loading = true;
+                axios.get(`/api/documentations-sistema/${this.sistemaid}`).then( response => {
+                    this.documentations = response.data;
+                    this.loading = false;
+                    this.isEditing = false;
+                 });
+            }
 
         },
 
