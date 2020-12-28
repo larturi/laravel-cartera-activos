@@ -100,4 +100,8 @@
     }
 </script>
 
-
+<style scoped>
+    .btn {
+        width: 140px !important;
+    }
+</style>

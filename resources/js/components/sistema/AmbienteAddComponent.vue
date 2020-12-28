@@ -89,15 +89,15 @@
 
                             <div class="modal-body">
 
-                                <label for="cliente" class="">
+                                <label for="ambiente">
                                     Ambiente:
                                 </label>
-                                <b-form-select v-model="ambienteEdit.ambiente_id"
-                                            name="ambiente"
-                                            :options="ambientes"
-                                            :class="this.nullAmbienteError ? 'is-invalid' : ''"
-                                            class="mb-3">
-                                </b-form-select>
+
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    disabled
+                                    name="ambiente"
+                                    :value="ambienteEdit.ambiente.nombre">
 
                                 <label for="url" class="">
                                     Url del sistema:

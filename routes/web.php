@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\SistemasExport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -75,9 +76,6 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // Miembros (Users)
     Route::get('/api/miembros', 'SistemaController@getMiembrosAll')->name('miembros');
 
-    // Roles
-    // Route::get('/api/roles', 'SistemaController@getRolesAll')->name('roles');
-
     // Recursos
     Route::get('/api/recursos/{sistema}', 'SistemaController@getRecursosSistema')->name('recursos.get');
     Route::post('/api/recursos', 'SistemaController@addRecursoSistema')->name('recursos.add');
@@ -141,6 +139,11 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::put('/usuarios/{usuario}', 'usuarios\UsuarioController@update')->name('usuarios.update');
     Route::post('/usuarios/update/baja', 'usuarios\UsuarioController@delete')->name('usuarios.delete');
     Route::post('/usuarios/update/habilitar', 'usuarios\UsuarioController@habilitar')->name('usuarios.habilitar');
+
+    // Exports Excel
+    Route::get('/exports/sistemas', function() {
+        return (new SistemasExport)->download('sistemas.xlsx');
+    });
 
 });
 
