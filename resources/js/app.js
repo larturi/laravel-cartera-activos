@@ -59,14 +59,14 @@ Vue.component('ambiente-add-component', require('./components/sistema/AmbienteAd
 // Usuarios
 Vue.component('usuarios-component', require('./components/usuarios/UsuariosComponent.vue').default);
 Vue.component('usuario-component', require('./components/usuarios/UsuarioComponent.vue').default);
+Vue.component('usuarios-buscador-component', require('./components/usuarios/UsuariosBuscadorComponent.vue').default);
 
-//import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+
 
 const app = new Vue({
     el: '#app',
 });
-
 
 $(document).ready( function() {
     let showFilter = localStorage.getItem('showFilter');

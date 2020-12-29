@@ -8,7 +8,20 @@
                 <div class="card card-primary">
 
                     <div class="card-header">
-                       <h3 class="card-title">Adminisrar Usuarios</h3>
+                        <h3 class="card-title">Buscardor de Usuarios</h3>
+                    </div>
+
+                    <usuarios-buscador-component/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card card-primary">
+
+                    <div class="card-header">
+                       <h3 class="card-title">Listado de Usuarios</h3>
                     </div>
 
                     @if (count($usuarios) == 0)
@@ -18,8 +31,7 @@
                     @else
                         <usuarios-component
                            :usuarios="{{ json_encode($usuarios) }}"
-                        >
-                        </usuarios-component>
+                        />
                     @endif
 
                 </div>
