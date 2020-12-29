@@ -260,6 +260,7 @@
                     <div class="row float-right">
                         <div class="col-12 mt-2">
                             <button type="button" class="btn btn-secondary btn-sm" id="btnLimpiarFiltros">
+                                <i class="fa fa-times"></i>
                                 Limpiar
                             </button>
 
@@ -267,6 +268,12 @@
                                 <i class="fa fa-search"></i>
                                 Buscar
                             </button>
+
+                            <a href="{{ url('/exports/sistemas') }}" class="btn btn-success btn-sm">
+                                <i class="fa fa-file-excel"></i>
+                                Exportar
+                            </a>
+
                         </div>
                     </div>
 
