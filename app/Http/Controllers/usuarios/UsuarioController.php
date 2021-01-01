@@ -35,8 +35,6 @@ class UsuarioController extends Controller
     {
         $termino = $request['termino'];
 
-        Log::info($termino);
-
         if ($termino == '') {
             $termino = 'all_users';
         }

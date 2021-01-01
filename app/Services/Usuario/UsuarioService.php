@@ -21,7 +21,8 @@ class UsuarioService extends BaseService
     } else {
       $query = User::orderBy('apellido');
       $query = $query->where('name', 'like', '%' . $termino . '%')
-                     ->orWhere('apellido', 'like', '%' . $termino . '%');
+                     ->orWhere('apellido', 'like', '%' . $termino . '%')
+                     ->orWhere('user', 'like', '%' . $termino . '%');
       return $query->paginate($paginator_items);
     }
 

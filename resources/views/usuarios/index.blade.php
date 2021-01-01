@@ -24,10 +24,6 @@
                        <h3 class="card-title">Listado de Usuarios</h3>
                     </div>
     
-                        <!-- <div class="card-body text-center" style="display: block;">
-                            No se han encontrado usuarios
-                        </div> -->
-  
                     <usuarios-component/>
  
                 </div>

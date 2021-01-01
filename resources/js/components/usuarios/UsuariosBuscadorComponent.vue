@@ -57,10 +57,6 @@ export default {
                habilitado: true,
                perfiles: [],
                termino: '',
-               totalUsuarios: 0,
-               perPage: 0,
-               lastPage: 0,
-               paginaActual: 1
             }
         },
 
@@ -69,6 +65,10 @@ export default {
                 const texto = this.termino || 'all_users';
                 axios.get(`/api/usuarios/${texto}?page=1`).then( response => {
                     this.$store.commit('setUsuarios', response.data.data);
+                    this.$store.commit('setTotalUsuarios', response.data.total);
+                    this.$store.commit('setPerPage', response.data.per_page);
+                    this.$store.commit('setLastPage', response.data.last_page);
+                    this.$store.commit('setPaginaActual', 1);
                 });
             }
         },
