@@ -23,24 +23,19 @@
                     <div class="card-header">
                        <h3 class="card-title">Listado de Usuarios</h3>
                     </div>
-
-                    @if (count($usuarios) == 0)
-                        <div class="card-body text-center" style="display: block;">
+    
+                        <!-- <div class="card-body text-center" style="display: block;">
                             No se han encontrado usuarios
-                        </div>
-                    @else
-                        <usuarios-component
-                           :usuarios="{{ json_encode($usuarios) }}"
-                        />
-                    @endif
-
+                        </div> -->
+  
+                    <usuarios-component/>
+ 
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                {{ $usuarios->links() }}
             </div>
         </div>
 

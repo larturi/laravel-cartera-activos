@@ -27,8 +27,21 @@ class UsuarioController extends Controller
     {
         $usuarios= $this->usuarioService->buscar();
 
-        return view('usuarios/index')
-            ->with('usuarios', $usuarios);
+        return view('usuarios/index');
+    
+    }
+
+    public function getUsuarios(Request $request)
+    {
+        $termino = $request['termino'];
+
+        Log::info($termino);
+
+        if ($termino == '') {
+            $termino = 'all_users';
+        }
+
+        return $this->usuarioService->buscar($termino);
     }
 
     public function update(Request $request)

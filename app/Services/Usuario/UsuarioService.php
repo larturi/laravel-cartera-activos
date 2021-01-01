@@ -8,17 +8,22 @@ use DB;
 
 use App\Models\User;
 use App\Services\BaseService;
-use Illuminate\Support\Facades\Log;
 
 class UsuarioService extends BaseService
 {
-  public function buscar()
+  public function buscar($termino = '')
   {
 
-        $paginator_items = env("PAGINATOR_ITEMS", 20);
+    $paginator_items = env("PAGINATOR_ITEMS", 5);
 
-        return User::orderBy('apellido')->paginate($paginator_items);
-
+    if ($termino == 'all_users') {
+      return User::orderBy('apellido')->paginate($paginator_items);
+    } else {
+      $query = User::orderBy('apellido');
+      $query = $query->where('name', 'like', '%' . $termino . '%')
+                     ->orWhere('apellido', 'like', '%' . $termino . '%');
+      return $query->paginate($paginator_items);
+    }
 
   }
 

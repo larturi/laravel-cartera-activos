@@ -139,6 +139,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::put('/usuarios/{usuario}', 'usuarios\UsuarioController@update')->name('usuarios.update');
     Route::post('/usuarios/update/baja', 'usuarios\UsuarioController@delete')->name('usuarios.delete');
     Route::post('/usuarios/update/habilitar', 'usuarios\UsuarioController@habilitar')->name('usuarios.habilitar');
+    Route::get('/api/usuarios/{termino}', 'usuarios\UsuarioController@getUsuarios')->name('usuarios.get');
 
     // Exports Excel
     Route::get('/exports/sistemas', function() {

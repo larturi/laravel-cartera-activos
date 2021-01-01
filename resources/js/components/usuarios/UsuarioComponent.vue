@@ -13,8 +13,7 @@
             <form action="" @submit.prevent="updatePerfil()">
                 <div class="row">
                     <div class="col-9">
-                        <b-form-select v-model="selectedPerfil"
-                                        :options="perfiles" class="mini">
+                        <b-form-select v-model="selectedPerfil" :options="perfiles" class="mini">
                         </b-form-select>
                     </div>
                     <div class="col-3">

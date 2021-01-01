@@ -42,7 +42,7 @@ class AmbienteController extends Controller
 
     public function store(Request $request)
     {
-        return $this->ambienteService->store($request, $id);
+        return $this->ambienteService->store($request);
     }
 
     public function update(Request $request, $id)
