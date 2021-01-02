@@ -236,10 +236,11 @@ export default {
                                 impacto_id: this.impacto_id,
                             }
                         }).then( response => {
+                                    console.log('Buscador', response.data.data);
                                     this.$store.commit('setSistemas', response.data.data);
-                                    this.$store.commit('setTotalSistemas', response.data.total_sistemas);
-                                    this.$store.commit('setPerPageSistemas', response.data.per_page_sistemas);
-                                    this.$store.commit('setLastPageSistemas', response.data.last_page_sistemas);
+                                    this.$store.commit('setTotalSistemas', response.data.total);
+                                    this.$store.commit('setPerPageSistemas', response.data.per_page);
+                                    this.$store.commit('setLastPageSistemas', response.data.last_page);
                                     this.$store.commit('setPaginaActualSistemas', 1);
                                 });
             },

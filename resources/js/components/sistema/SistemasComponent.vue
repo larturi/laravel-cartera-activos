@@ -111,6 +111,7 @@ store,
                                 test: 8
                             }
                         }).then( (response) => {
+                            console.log('Principal', response.data.data);
                             this.$store.commit('setSistemas', response.data.data);
                             this.$store.commit('setTotalSistemas', response.data.total);
                             this.$store.commit('setPerPageSistemas', response.data.per_page);
@@ -122,7 +123,6 @@ store,
                 this.getSistemas(page);
                 this.$store.commit('setPaginaActualSistemas', page);
             },
-
         },
 
         mounted() {
