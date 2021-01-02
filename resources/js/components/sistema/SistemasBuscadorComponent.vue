@@ -169,7 +169,7 @@
 
                     <div class="row float-right">
                         <div class="col-12 mt-2">
-                            <button type="button" class="btn btn-secondary btn-sm" id="btnLimpiarFiltros">
+                            <button type="button" class="btn btn-secondary btn-sm" @click.prevent="limpiarFiltros()">
                                 <i class="fa fa-times"></i>
                                 Limpiar
                             </button>
@@ -381,6 +381,21 @@ export default {
                 this.motor_id      = Number(localStorage.getItem("motor_id"));
                 this.login_id      = Number(localStorage.getItem("login_id"));
                 this.impacto_id    = Number(localStorage.getItem("impacto_id"));
+            },
+
+            limpiarFiltros() {
+                this.termino = '';
+                this.cliente_id = 0;
+                this.lider_id = 0;
+                this.recurso_id = 0;
+                this.estado_id = 0;
+                this.criticidad_id = 0;
+                this.lenguaje_id = 0;
+                this.motor_id = 0;
+                this.login_id = 0;
+                this.impacto_id = 0;
+
+                this.procesarBusqueda();
             }
         },
 

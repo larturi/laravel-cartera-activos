@@ -37,15 +37,15 @@
                                         <td>{{ sistema.nombre }}</td>
                                         <td>{{ sistema.sigla }}</td>
                                         <td>
-                                            <span class="badge badge-success">{{ sistema.authentication.nombre }}</span>
+                                            <span class="badge" :class="getClassAuthentication(sistema.authentication.id)">{{ sistema.authentication.nombre }}</span>
                                         </td>
                                         <td>{{ sistema.lider.name + ' ' + sistema.lider.apellido }}</td>
                                         <td>{{ sistema.cliente.nombre }}</td>
                                         <td>
-                                            <span class="badge badge badge-success">{{ sistema.estado.nombre }}</span>
+                                            <span class="badge" :class="getClassEstado(sistema.estado.id)">{{ sistema.estado.nombre }}</span>
                                         </td>
                                         <td>
-                                            <span class="badge badge badge-primary">{{ sistema.criticidad.nombre }}</span>
+                                            <span class="badge" :class="getClassCriticidad(sistema.criticidad.id)">{{ sistema.criticidad.nombre }}</span>
                                         </td>
                                         <td>
                                             <a :href="'sistemas/' + sistema.id" class="btn btn-primary btn-sm">Ver</a>
@@ -130,6 +130,82 @@ store,
                 this.getSistemas(page);
                 this.$store.commit('setPaginaActualSistemas', page);
             },
+            getClassAuthentication(id) {
+                switch (id) {
+                    case 1:
+                        return 'badge-success';
+                        break;
+
+                    case 2:
+                        return 'badge-primary';
+                        break;
+
+                    case 3:
+                        return 'badge-danger';
+                        break;
+
+                    case 4:
+                        return 'badge-dark';
+                        break;
+
+                    case 5:
+                        return 'badge-info';
+                        break;
+
+                    case 6:
+                        return 'badge-warning';
+                        break;
+                
+                    default:
+                        return 'badge-light';
+                        break;
+                }
+            },
+            getClassEstado(id) {
+                switch (id) {
+                    case 1:
+                        return 'badge-success';
+                        break;
+
+                    case 2:
+                        return 'badge-primary';
+                        break;
+
+                    case 3:
+                        return 'badge-danger';
+                        break;
+
+                    case 4:
+                        return 'badge-dark';
+                        break;
+
+                    case 5:
+                        return 'badge-info';
+                        break;
+
+                    case 6:
+                        return 'badge-warning';
+                        break;
+                
+                    default:
+                        return 'badge-light';
+                        break;
+                }
+            },
+            getClassCriticidad(id) {
+                switch (id) {
+                    case 1:
+                        return 'badge-danger';
+                        break;
+
+                    case 2:
+                        return 'badge-primary';
+                        break;
+                    default:
+                        return 'badge-light';
+                        break;
+                }
+            }
         },
 
         mounted() {
@@ -146,6 +222,7 @@ store,
             last_page_sistemas() {
                 return this.$store.state.last_page_sistemas;
             },
+            
         }
 
     }
