@@ -108,7 +108,15 @@ store,
             getSistemas(page = 1) {
                 axios.get(`/api/sistemas/all_sistemas?page=${page}`, {
                             params: {
-                                test: 8
+                                cliente_id: 4,
+                                // lider_id: this.lider_id,
+                                // recurso_id: this.recurso_id,
+                                // estado_id: this.estado_id,
+                                // criticidad_id: this.criticidad_id,
+                                // lenguaje_id: this.lenguaje_id,
+                                // base_id: this.motor_id,
+                                // login_id: this.login_id,
+                                // impacto_id: this.impacto_id,
                             }
                         }).then( (response) => {
                             console.log('Principal', response.data.data);

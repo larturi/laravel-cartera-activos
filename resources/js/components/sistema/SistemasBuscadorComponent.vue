@@ -223,6 +223,8 @@ export default {
                     texto = 'all_sistemas';
                 }
 
+                this.setLocalStorage();
+
                 axios.get(`/api/sistemas/${texto}?page=1`, {
                             params: {
                                 cliente_id: this.cliente_id,
@@ -343,6 +345,18 @@ export default {
                     this.impactos = impactosSelect;
                  });
             },
+            setLocalStorage() {
+                localStorage.setItem("termino", this.termino);
+                localStorage.setItem("cliente_id", this.cliente_id);
+                localStorage.setItem("lider_id", this.lider_id);
+                localStorage.setItem("recurso_id", this.recurso_id);
+                localStorage.setItem("estado_id", this.estado_id);
+                localStorage.setItem("criticidad_id", this.criticidad_id);
+                localStorage.setItem("lenguaje_id", this.lenguaje_id);
+                localStorage.setItem("motor_id", this.motor_id);
+                localStorage.setItem("login_id", this.login_id);
+                localStorage.setItem("impacto_id", this.impacto_id);
+            }
         },
 
         mounted() {
