@@ -31,7 +31,6 @@
 
             <!-- Paginador -->
             <div v-if="this.users.length > 0" class="row">
-                {{this.last_page}}
                 <div class="col mt-4 ml-3">
                     <nav class="" aria-label="">
                         <ul class="pagination">
@@ -64,7 +63,7 @@
 
 <script>
 
-import store from '../store';
+import store from '../store/usuarios';
 
     export default {
 

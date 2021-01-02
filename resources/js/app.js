@@ -61,17 +61,20 @@ Vue.component('usuarios-component', require('./components/usuarios/UsuariosCompo
 Vue.component('usuario-component', require('./components/usuarios/UsuarioComponent.vue').default);
 Vue.component('usuarios-buscador-component', require('./components/usuarios/UsuariosBuscadorComponent.vue').default);
 
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+// Sistemas
+Vue.component('sistemas-component', require('./components/sistema/SistemasComponent.vue').default);
+Vue.component('sistemas-buscador-component', require('./components/sistema/SistemasBuscadorComponent.vue').default);
 
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 const app = new Vue({
     el: '#app',
 });
 
-$(document).ready( function() {
+$(document).ready(function() {
     let showFilter = localStorage.getItem('showFilter');
 
-    if(showFilter === '0') {
+    if (showFilter === '0') {
         $("#filterCard").addClass("collapsed-card");
     } else {
         $("#filterCard").removeClass("collapsed-card");
@@ -81,7 +84,7 @@ $(document).ready( function() {
 $('#btnCollapseFiltros').on("click", function() {
     let showFilter = localStorage.getItem('showFilter');
 
-    if(showFilter === '0') {
+    if (showFilter === '0') {
         localStorage.setItem('showFilter', '1');
     } else {
         localStorage.setItem('showFilter', '0');
@@ -103,4 +106,3 @@ $('#btnLimpiarFiltros').on("click", function() {
     window.location.replace("/");
 
 });
-

@@ -65,56 +65,56 @@ class SistemaController extends Controller
 
     public function index()
     {
-        $sistemas = $this->sistemaService->buscar();
+        $sistemas = $this->sistemaService->buscar('', []);
 
-        $lideres         = User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
-        $recursos        = User::where('habilitado', '=', 1)->orderBy('apellido', 'asc')->get();
-        $clientes        = $this->clienteService->getAll();
-        $authentications = $this->authenticationService->getAll();
-        $estados         = $this->estadoService->getAll();
-        $criticidades    = $this->criticidadService->getAll();
-        $lenguajes       = $this->lenguajeService->getAll();
-        $bases           = $this->basesService->getAll();
-        $impactos        = $this->impactoService->getAll();
+        // $lideres         = User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
+        // $recursos        = User::where('habilitado', '=', 1)->orderBy('apellido', 'asc')->get();
+        // $clientes        = $this->clienteService->getAll();
+        // $authentications = $this->authenticationService->getAll();
+        // $estados         = $this->estadoService->getAll();
+        // $criticidades    = $this->criticidadService->getAll();
+        // $lenguajes       = $this->lenguajeService->getAll();
+        // $bases           = $this->basesService->getAll();
+        // $impactos        = $this->impactoService->getAll();
 
-        return view('sistema/index')
-            ->with('sistemas', $sistemas)
-            ->with('clientes', $clientes)
-            ->with('lideres', $lideres)
-            ->with('recursos', $recursos)
-            ->with('estados', $estados)
-            ->with('criticidades', $criticidades)
-            ->with('lenguajes', $lenguajes)
-            ->with('bases', $bases)
-            ->with('impactos', $impactos)
-            ->with('logins', $authentications);
+        return view('sistema/index');
+            // ->with('sistemas', $sistemas)
+            // ->with('clientes', $clientes)
+            // ->with('lideres', $lideres)
+            // ->with('recursos', $recursos)
+            // ->with('estados', $estados)
+            // ->with('criticidades', $criticidades)
+            // ->with('lenguajes', $lenguajes)
+            // ->with('bases', $bases)
+            // ->with('impactos', $impactos)
+            // ->with('logins', $authentications);
     }
 
     public function buscarSistemas(Request $request) {
 
-        $sistemas = $this->sistemaService->buscar($request);
+        // $sistemas = $this->sistemaService->buscar('', $request);
 
-        $lideres         = User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
-        $recursos        = User::where('habilitado', '=', 1)->orderBy('apellido', 'asc')->get();
-        $clientes        = $this->clienteService->getAll();
-        $authentications = $this->authenticationService->getAll();
-        $estados         = $this->estadoService->getAll();
-        $criticidades    = $this->criticidadService->getAll();
-        $lenguajes       = $this->lenguajeService->getAll();
-        $bases           = $this->basesService->getAll();
-        $impactos        = $this->impactoService->getAll();
+        // $lideres         = User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
+        // $recursos        = User::where('habilitado', '=', 1)->orderBy('apellido', 'asc')->get();
+        // $clientes        = $this->clienteService->getAll();
+        // $authentications = $this->authenticationService->getAll();
+        // $estados         = $this->estadoService->getAll();
+        // $criticidades    = $this->criticidadService->getAll();
+        // $lenguajes       = $this->lenguajeService->getAll();
+        // $bases           = $this->basesService->getAll();
+        // $impactos        = $this->impactoService->getAll();
 
-        return view('sistema/index')
-            ->with('sistemas', $sistemas)
-            ->with('clientes', $clientes)
-            ->with('lideres', $lideres)
-            ->with('recursos', $recursos)
-            ->with('estados', $estados)
-            ->with('criticidades', $criticidades)
-            ->with('lenguajes', $lenguajes)
-            ->with('bases', $bases)
-            ->with('impactos', $impactos)
-            ->with('logins', $authentications);
+        // return view('sistema/index')
+        //     ->with('sistemas', $sistemas)
+        //     ->with('clientes', $clientes)
+        //     ->with('lideres', $lideres)
+        //     ->with('recursos', $recursos)
+        //     ->with('estados', $estados)
+        //     ->with('criticidades', $criticidades)
+        //     ->with('lenguajes', $lenguajes)
+        //     ->with('bases', $bases)
+        //     ->with('impactos', $impactos)
+        //     ->with('logins', $authentications);
     }
 
     public function create()
@@ -281,6 +281,11 @@ class SistemaController extends Controller
 
     }
 
+    public function getLideres()
+    {
+        return User::where('habilitado', '=', 1)->whereIn('perfil', ['CARGA', 'ADMIN'])->orderBy('apellido', 'asc')->get();
+    }
+
     public function getRecursosSistema($id)
     {
         $sistema = SistemaRecursos::where('sistema_id', $id)
@@ -434,6 +439,18 @@ class SistemaController extends Controller
           ->update([
               'descripcion' => $request['descripcion'],
           ]);
+    }
+
+    public function getSistemas(Request $request)
+    {
+
+        if($request) {
+            $termino = $request['termino'];
+        } else {
+            $termino = 'all_sistemas';
+        }
+
+        return $this->sistemaService->buscar($termino, $request);
     }
 
     public function getSistemasList()

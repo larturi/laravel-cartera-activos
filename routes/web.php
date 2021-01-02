@@ -1,6 +1,7 @@
 <?php
 
 use App\Exports\SistemasExport;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('/sistemas', 'SistemaController@store')->name('sistemas.store');
     Route::delete('/sistemas/{sistema}', 'SistemaController@destroy')->name('sistemas.destroy');
     Route::put('/sistemas/{sistema}', 'SistemaController@update')->name('sistemas.update');
+    Route::get('/api/sistemas/{termino}', 'SistemaController@getSistemas')->name('sistemas.get');
     Route::get('/api/sistemas', 'SistemaController@getSistemasList')->name('sistemas.list');
     Route::put('/api/sistemas', 'SistemaController@updateComentario')->name('sistemas.update-comentario');
 
@@ -80,6 +82,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/api/recursos/{sistema}', 'SistemaController@getRecursosSistema')->name('recursos.get');
     Route::post('/api/recursos', 'SistemaController@addRecursoSistema')->name('recursos.add');
     Route::delete('/api/recursos/{recurso}', 'SistemaController@deleteRecursosSistema')->name('recursos.delete');
+    Route::get('/api/lideres', 'SistemaController@getLideres')->name('lideres.get');
 
     // Lenguajes
     Route::post('/api/lenguajes-sistema/add', 'SistemaController@addLenguajeSistema')->name('lenguajes-sistema.add');

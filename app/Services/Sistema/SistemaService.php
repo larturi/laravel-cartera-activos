@@ -12,31 +12,64 @@ use Illuminate\Support\Facades\Log;
 
 class SistemaService extends BaseService
 {
-  public function buscar($request = null)
+  public function buscar($termino, $filtros)
   {
 
         $paginator_items = env("PAGINATOR_ITEMS", 20);
 
-        if($request == null) {
-            return Sistema::paginate($paginator_items);
-        } else {
+        // if ($termino == 'all_sistemas') {
+        //     return Sistema::with('authentication')
+        //                   ->with('lider')
+        //                   ->with('cliente')
+        //                   ->with('estado')
+        //                   ->with('criticidad')
+        //                   ->paginate($paginator_items);
+        // } else {
 
-            $request->flash();
+            $cliente_id     = $filtros['cliente_id'] ?? 0;
+            $lider_id       = $filtros['lider_id'] ?? 0;
+            $recurso_id     = $filtros['recurso_id'] ?? 0;
+            $estado_id      = $filtros['estado_id'] ?? 0;
+            $criticidad_id  = $filtros['criticidad_id'] ?? 0;
+            $lenguaje_id    = $filtros['lenguaje_id'] ?? 0;
+            $base_id        = $filtros['base_id'] ?? 0;
+            $login_id       = $filtros['login_id'] ?? 0;
+            $impacto_id     = $filtros['impacto_id'] ?? 0;
+            
+            $query = Sistema::with('authentication')
+                            ->with('lider')
+                            ->with('cliente')
+                            ->with('estado')
+                            ->with('criticidad');
+                            
+            if ($termino != 'all_sistemas') {
+                $query = $query->where('nombre', 'like', '%' . $termino . '%');
+            }
 
-            $nombre = $request['nombre'];
-            $lider_id = $request['lider_id'];
-            $recurso_id = $request['recurso_id'];
-            $estado_id = $request['estado_id'];
-            $criticidad_id = $request['criticidad_id'];
-            $cliente_id = $request['cliente_id'];
-            $lenguaje_id = $request['lenguaje_id'];
-            $base_id = $request['base_id'];
-            $login_id = $request['login_id'];
-            $impacto_id = $request['impacto_id'];
+            if ($cliente_id != 0) {
+                $query = $query->where('cliente_id', '=', $cliente_id);
+            }
 
-            $query = Sistema::where('nombre', 'like', '%' . $nombre . '%');
+            if ($lider_id != 0) {
+                $query = $query->where('lider_id', '=', $lider_id);
+            }
 
-            if ($lenguaje_id != '') {
+            if ($recurso_id != 0) {
+                $query = $query->join('sistema_recursos as tbl4', function ($join) use($recurso_id) {
+                    $join->on('tbl4.sistema_id', '=', 'sistemas.id')
+                         ->where('tbl4.user_id', '=', $recurso_id);
+                });
+            }
+
+            if ($estado_id != 0) {
+                $query = $query->where('estado_id', '=', $estado_id);
+            }
+
+            if ($criticidad_id != 0) {
+                $query = $query->where('criticidad_id', '=', $criticidad_id);
+            }
+
+            if ($lenguaje_id != 0) {
                 $query = $query->join('sistema_caracteristicas as tbl1', function ($join) use($lenguaje_id) {
                     $join->on('tbl1.sistema_id', '=', 'sistemas.id')
                          ->where('tbl1.caracteristica_type', '=', 'App\Models\Lenguaje')
@@ -44,7 +77,7 @@ class SistemaService extends BaseService
                 });
             }
 
-            if ($base_id != '') {
+            if ($base_id != 0) {
                 $query = $query->join('sistema_caracteristicas as tbl2', function ($join) use($base_id) {
                     $join->on('tbl2.sistema_id', '=', 'sistemas.id')
                          ->where('tbl2.caracteristica_type', '=', 'App\Models\Base')
@@ -52,50 +85,27 @@ class SistemaService extends BaseService
                 });
             }
 
-            if ($impacto_id != '') {
+            if ($login_id != 0) {
+                $query = $query->where('authentication_id', '=', $login_id);
+            }
+
+            if ($impacto_id != 0) {
                 $query = $query->join('sistema_caracteristicas as tbl3', function ($join) use($impacto_id) {
                     $join->on('tbl3.sistema_id', '=', 'sistemas.id')
                          ->where('tbl3.caracteristica_type', '=', 'App\Models\Impacto')
                          ->where('tbl3.caracteristica_id', '=', $impacto_id);
                 });
             }
-
-            if ($lider_id != '') {
-                $query = $query->where('lider_id', '=', $lider_id);
-            }
-
-            if ($estado_id != '') {
-                $query = $query->where('estado_id', '=', $estado_id);
-            }
-
-            if ($criticidad_id != '') {
-                $query = $query->where('criticidad_id', '=', $criticidad_id);
-            }
-
-            if ($cliente_id != '') {
-                $query = $query->where('cliente_id', '=', $cliente_id);
-            }
-
-            if ($login_id != '') {
-                $query = $query->where('authentication_id', '=', $login_id);
-            }
-
-            if ($recurso_id != '') {
-                $query = $query->join('sistema_recursos as tbl4', function ($join) use($recurso_id) {
-                    $join->on('tbl4.sistema_id', '=', 'sistemas.id')
-                         ->where('tbl4.user_id', '=', $recurso_id);
-                });
-            }
-
+    
             $query = $query->select('sistemas.*');
 
             return $query->distinct()->paginate($paginator_items);
-
         }
 
+        
 
-  }
 
+  // }
 }
 
 

@@ -38,7 +38,7 @@
 
 <script>
 
-import store from '../store';
+import store from '../store/usuarios';
 
 export default {
 
