@@ -54,6 +54,34 @@
                                 </tbody>
 
                             </table>
+
+                            <!-- Paginador -->
+                            <div v-if="this.sistemas.length > 0" class="row">
+                                <div class="col mt-4 ml-3">
+                                    <nav class="" aria-label="">
+                                        <ul class="pagination">
+                                            <li class="page-item"
+                                                :class="{'disabled' : pagina_actual_sistemas === 1}">
+                                                <a v-on:click.prevent="goToPage(pagina_actual_sistemas - 1)" class="page-link" href="#">Anterior</a>
+                                            </li>
+
+                                            <li class="page-item"
+                                                :class="{'active' : pagina_actual_sistemas === index}"
+                                                v-for="index in last_page_sistemas" :key="index"
+                                            >
+                                                <a v-on:click.prevent="goToPage(index)" class="page-link" href="#">{{ index }}</a>
+                                            </li>
+
+                                            <li class="page-item"
+                                                :class="{'disabled' : pagina_actual_sistemas === last_page_sistemas}"
+                                            >
+                                                <a v-on:click.prevent="goToPage(pagina_actual_sistemas + 1)" class="page-link" href="#">Siguiente</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
                         </div>
 
                 </div>
