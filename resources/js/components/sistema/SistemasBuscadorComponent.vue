@@ -34,6 +34,7 @@
                                     class="form-control"
                                     v-model="termino"
                                     @keyup="procesarBusqueda"
+                                    @keypress.enter.prevent=""
                                     autofocus>
                             </div>
 
@@ -44,7 +45,9 @@
                                 <label>Area Solicitante:</label>
                                 <b-form-select 
                                     v-model="cliente_id" 
-                                    :options="clientes" 
+                                    :options="clientes"
+                                    value-field="value"
+                                    text-field="text"
                                     @change="procesarBusqueda"
                                     class="custom-select">
                                 </b-form-select>
@@ -57,7 +60,9 @@
                                 <label>Líder:</label>
                                 <b-form-select 
                                     v-model="lider_id" 
-                                    :options="lideres" 
+                                    :options="lideres"
+                                    value-field="value"
+                                    text-field="text"
                                     @change="procesarBusqueda"
                                     class="custom-select">
                                 </b-form-select>
@@ -69,7 +74,9 @@
                                 <label>Recurso:</label>
                                 <b-form-select 
                                     v-model="recurso_id" 
-                                    :options="recursos" 
+                                    :options="recursos"
+                                    value-field="value"
+                                    text-field="text"
                                     @change="procesarBusqueda"
                                     class="custom-select">
                                 </b-form-select>
@@ -85,7 +92,9 @@
                                 <label>Estado:</label>
                                 <b-form-select 
                                     v-model="estado_id" 
-                                    :options="estados" 
+                                    :options="estados"
+                                    value-field="value"
+                                    text-field="text"
                                     @change="procesarBusqueda"
                                     class="custom-select">
                                 </b-form-select>
@@ -133,7 +142,9 @@
                                 <label>Login:</label>
                                 <b-form-select 
                                     v-model="login_id" 
-                                    :options="authentications" 
+                                    :options="authentications"
+                                    value-field="value"
+                                    text-field="text" 
                                     @change="procesarBusqueda"
                                     class="custom-select">
                                 </b-form-select>
@@ -145,7 +156,9 @@
                                 <label>Impacto:</label>
                                 <b-form-select 
                                     v-model="impacto_id" 
-                                    :options="impactos" 
+                                    :options="impactos"
+                                    value-field="value"
+                                    text-field="text"
                                     @change="procesarBusqueda"
                                     class="custom-select">
                                 </b-form-select>
@@ -238,7 +251,6 @@ export default {
                                 impacto_id: this.impacto_id,
                             }
                         }).then( response => {
-                                    console.log('Buscador', response.data.data);
                                     this.$store.commit('setSistemas', response.data.data);
                                     this.$store.commit('setTotalSistemas', response.data.total);
                                     this.$store.commit('setPerPageSistemas', response.data.per_page);
@@ -251,7 +263,7 @@ export default {
                     let clientesSelect = [{ value: null, text: '-- Seleccionar --' }];
 
                     response.data.forEach( cliente => {
-                        clientesSelect.push({ value: cliente.id, text: cliente.nombre })
+                        clientesSelect.push({ value: cliente.id, text: cliente.nombre, selected: true })
                     });
 
                     this.clientes = clientesSelect;
@@ -356,10 +368,24 @@ export default {
                 localStorage.setItem("motor_id", this.motor_id);
                 localStorage.setItem("login_id", this.login_id);
                 localStorage.setItem("impacto_id", this.impacto_id);
+            },
+
+            getLocalStorage() {
+                this.termino    = localStorage.getItem("termino");
+                this.cliente_id    = Number(localStorage.getItem("cliente_id"));
+                this.lider_id      = Number(localStorage.getItem("lider_id"));
+                this.recurso_id    = Number(localStorage.getItem("recurso_id"));
+                this.estado_id     = Number(localStorage.getItem("estado_id"));
+                this.criticidad_id = Number(localStorage.getItem("criticidad_id"));
+                this.lenguaje_id   = Number(localStorage.getItem("lenguaje_id"));
+                this.motor_id      = Number(localStorage.getItem("motor_id"));
+                this.login_id      = Number(localStorage.getItem("login_id"));
+                this.impacto_id    = Number(localStorage.getItem("impacto_id"));
             }
         },
 
         mounted() {
+            this.getLocalStorage();
             this.getClientes();
             this.getLideres();
             this.getRecursos();

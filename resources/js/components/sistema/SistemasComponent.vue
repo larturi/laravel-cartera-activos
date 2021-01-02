@@ -108,18 +108,17 @@ store,
             getSistemas(page = 1) {
                 axios.get(`/api/sistemas/all_sistemas?page=${page}`, {
                             params: {
-                                cliente_id: 4,
-                                // lider_id: this.lider_id,
-                                // recurso_id: this.recurso_id,
-                                // estado_id: this.estado_id,
-                                // criticidad_id: this.criticidad_id,
-                                // lenguaje_id: this.lenguaje_id,
-                                // base_id: this.motor_id,
-                                // login_id: this.login_id,
-                                // impacto_id: this.impacto_id,
+                                cliente_id: Number(localStorage.getItem("cliente_id")),
+                                lider_id: Number(localStorage.getItem("lider_id")),
+                                recurso_id: Number(localStorage.getItem("recurso_id")),
+                                estado_id: Number(localStorage.getItem("estado_id")),
+                                criticidad_id: Number(localStorage.getItem("criticidad_id")),
+                                lenguaje_id: Number(localStorage.getItem("lenguaje_id")),
+                                base_id: Number(localStorage.getItem("base_id")),
+                                login_id: Number(localStorage.getItem("login_id")),
+                                impacto_id: Number(localStorage.getItem("impacto_id")),
                             }
                         }).then( (response) => {
-                            console.log('Principal', response.data.data);
                             this.$store.commit('setSistemas', response.data.data);
                             this.$store.commit('setTotalSistemas', response.data.total);
                             this.$store.commit('setPerPageSistemas', response.data.per_page);
