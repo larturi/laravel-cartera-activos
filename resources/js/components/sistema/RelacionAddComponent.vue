@@ -40,6 +40,7 @@
                                             name="descripcion"
                                             cols="30"
                                             rows="3"
+                                            maxlength="250"
                                             v-model="descripcion">
                                         </textarea>
                                     </div>
@@ -103,6 +104,7 @@
                                             name="descripcion"
                                             cols="30"
                                             rows="3"
+                                            maxlength="250"
                                             v-model="relacionEdit.descripcion">
                                         </textarea>
                                     </div>

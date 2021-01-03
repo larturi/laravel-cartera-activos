@@ -72,6 +72,14 @@ class ClientesSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+
+        DB::table('clientes')->insert([
+            'nombre'     => 'Gerencia de Efectores Sanitarios Propios',
+            'user_id'    => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         DB::table('clientes')->insert([
             'nombre'     => 'Dirección Ejecutiva',
             'user_id'    => 1,

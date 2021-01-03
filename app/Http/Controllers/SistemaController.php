@@ -118,9 +118,9 @@ class SistemaController extends Controller
         $recursoSistema->role_id = 1;
         $recursoSistema->habilitado = true;
         $recursoSistema->user_id_log = auth()->id();
-        $recursoSistema->save();
+        $id = $recursoSistema->save();
 
-        return redirect()->action('SistemaController@index');
+        return redirect()->action('SistemaController@show', [$sistema->id])->with('status', 'Sistema creado correctamente. Puedes continuar con la carga de información');
 
     }
 

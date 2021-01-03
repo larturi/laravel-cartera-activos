@@ -201,7 +201,7 @@ export default {
         store,
 
         props: {
-            texto: '',
+
         },
 
         data() {
@@ -367,7 +367,7 @@ export default {
                  });
             },
             setLocalStorage() {
-                localStorage.setItem("termino", this.termino || '');
+                localStorage.setItem("termino", this.termino);
                 localStorage.setItem("cliente_id", this.cliente_id);
                 localStorage.setItem("lider_id", this.lider_id);
                 localStorage.setItem("recurso_id", this.recurso_id);
@@ -380,7 +380,9 @@ export default {
             },
 
             getLocalStorage() {
-                this.termino    = localStorage.getItem("termino");
+                this.termino       = localStorage.getItem("termino");
+                this.$store.commit('setTermino', this.termino);
+
                 this.cliente_id    = Number(localStorage.getItem("cliente_id"));
                 this.lider_id      = Number(localStorage.getItem("lider_id"));
                 this.recurso_id    = Number(localStorage.getItem("recurso_id"));

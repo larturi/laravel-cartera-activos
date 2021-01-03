@@ -1,9 +1,9 @@
 <template>
 
     <tr>
-        <td>{{ repositorio.repositorio.nombre }}</td>
-        <td>{{ repositorio.url_repositorio }}</td>
-        <td>{{ repositorio.comentarios }}</td>
+        <td class="text-nowrap">{{ repositorio.repositorio.nombre }}</td>
+        <td class="text-nowrap">{{ repositorio.url_repositorio }}</td>
+        <td class="text-nowrap">{{ repositorio.comentarios }}</td>
         <td v-if="canedit">
             <a href="#" class="btn btn-outline-danger btn-sm my-1 float-right" v-on:click.prevent="onClickDelete()">Borrar</a>
             <a href="#" class="btn btn-outline-primary btn-sm mr-2 my-1 float-right" v-on:click.prevent="onClickEdit()">Editar</a>

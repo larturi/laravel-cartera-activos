@@ -142,6 +142,10 @@ textarea:disabled {
   background: #fff !important;
 }
 
+.text-nowrap {
+  white-space: normal !important;
+}
+
 /******************** Extra Small *******************/
 
 /********************** Small **********************/

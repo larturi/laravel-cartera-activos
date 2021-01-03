@@ -52,6 +52,7 @@
                                             cols="30"
                                             :class="this.nullDescripcionError ? 'is-invalid' : ''"
                                             class="form-control mb-3"
+                                            maxlength="350"
                                             v-model="descripcion"
                                             rows="3">
                                     </textarea>
@@ -117,6 +118,7 @@
                                             cols="30"
                                             :class="this.nullDescripcionError ? 'is-invalid' : ''"
                                             class="form-control mb-3"
+                                            maxlength="350"
                                             v-model="hitoEdit.descripcion"
                                             rows="3">
                                     </textarea>

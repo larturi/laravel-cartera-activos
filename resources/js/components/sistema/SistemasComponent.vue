@@ -111,7 +111,17 @@ store,
         methods: {
             getSistemas(page = 1) {
                 this.$store.commit('setLoading', true);
-                axios.get(`/api/sistemas/all_sistemas?page=${page}`, {
+
+                let texto = 'all_sistemas';
+
+                if (this.termino != '') {
+                    texto = this.termino;
+                }
+
+                console.log(texto);
+                console.log(this.termino);
+
+                axios.get(`/api/sistemas/${texto}?page=${page}`, {
                             params: {
                                 cliente_id: Number(localStorage.getItem("cliente_id")),
                                 lider_id: Number(localStorage.getItem("lider_id")),
@@ -191,7 +201,10 @@ store,
                 return this.$store.state.last_page_sistemas;
             },
             noHaySistemas() {
-                return this.$store.state.noHaySistemas;
+                return this.$store.state.no_hay_sistemas;
+            },
+            termino() {
+                return this.$store.state.termino;
             },
             
         }

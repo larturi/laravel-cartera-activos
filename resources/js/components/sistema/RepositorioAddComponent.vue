@@ -40,6 +40,7 @@
                                 <input type="text"
                                     class="form-control mt-3"
                                     name="comentarios"
+                                    maxlength="150"
                                     placeholder="Ingresar comentarios"
                                     v-model="comentarios">
 
@@ -91,6 +92,7 @@
                                 <input type="text"
                                     class="form-control mt-3"
                                     name="comentarios"
+                                    maxlength="150"
                                     placeholder="Ingresar comentarios"
                                     v-model="repositorioEdit.comentarios">
 

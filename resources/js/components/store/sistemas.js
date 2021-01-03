@@ -38,6 +38,9 @@ export default new Vuex.Store({
         setNoHaySistemas(state, payload) {
             state.no_hay_sistemas = payload;
         },
+        setTermino(state, payload) {
+            state.termino = payload;
+        },
     },
 
 

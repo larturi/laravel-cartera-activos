@@ -256,5 +256,69 @@ class UsuarioSeeder extends Seeder
             'updated_at'        => Carbon::now(),
         ]);
 
+        DB::table('users')->insert([
+            'name'              => 'Christian',
+            'apellido'          => 'Vazquez',
+            'legajo'            => '52738',
+            'user'              => 'U52738',
+            'perfil'            => 'CARGA',
+            'role'              => 3,
+            'es_jefe'           => false,
+            'email'             => 'cvazquez@pami.org.ar',
+            'password'          => Hash::make('123'),
+            'approved'          => true,
+            'email_verified_at' => Carbon::now(),
+            'created_at'        => Carbon::now(),
+            'updated_at'        => Carbon::now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name'              => 'Jose',
+            'apellido'          => 'Linzalata',
+            'legajo'            => '48482',
+            'user'              => 'U48482',
+            'perfil'            => 'CARGA',
+            'role'              => 3,
+            'es_jefe'           => false,
+            'email'             => 'jlinzalata@pami.org.ar',
+            'password'          => Hash::make('123'),
+            'approved'          => true,
+            'email_verified_at' => Carbon::now(),
+            'created_at'        => Carbon::now(),
+            'updated_at'        => Carbon::now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name'              => 'Melisa',
+            'apellido'          => 'Elfenbaum',
+            'legajo'            => '57665',
+            'user'              => 'U57665',
+            'perfil'            => 'CARGA',
+            'role'              => 3,
+            'es_jefe'           => false,
+            'email'             => 'melfenbaum@pami.org.ar',
+            'password'          => Hash::make('123'),
+            'approved'          => true,
+            'email_verified_at' => Carbon::now(),
+            'created_at'        => Carbon::now(),
+            'updated_at'        => Carbon::now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name'              => 'Rodrigo',
+            'apellido'          => 'Kreiner',
+            'legajo'            => '62776',
+            'user'              => 'U62776',
+            'perfil'            => 'CARGA',
+            'role'              => 3,
+            'es_jefe'           => false,
+            'email'             => 'rkreiner@pami.org.ar',
+            'password'          => Hash::make('123'),
+            'approved'          => true,
+            'email_verified_at' => Carbon::now(),
+            'created_at'        => Carbon::now(),
+            'updated_at'        => Carbon::now(),
+        ]);
+
     }
 }
