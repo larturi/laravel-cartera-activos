@@ -12,7 +12,9 @@ export default new Vuex.Store({
         total_sistemas: 0,
         per_page_sistemas: 0,
         last_page_sistemas: 0,
-        pagina_actual_sistemas: 1
+        pagina_actual_sistemas: 1,
+        loading: false,
+        no_hay_sistemas: '',
     },
     mutations: {
         setSistemas(state, payload) {
@@ -29,6 +31,12 @@ export default new Vuex.Store({
         },
         setPaginaActualSistemas(state, payload) {
             state.pagina_actual_sistemas = Number(payload);
+        },
+        setLoading(state, payload) {
+            state.loading = payload;
+        },
+        setNoHaySistemas(state, payload) {
+            state.no_hay_sistemas = payload;
         },
     },
 

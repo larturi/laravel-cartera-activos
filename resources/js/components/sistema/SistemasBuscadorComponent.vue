@@ -237,6 +237,7 @@ export default {
                 }
 
                 this.setLocalStorage();
+                this.$store.commit('setLoading', true);
 
                 axios.get(`/api/sistemas/${texto}?page=1`, {
                             params: {
@@ -251,16 +252,24 @@ export default {
                                 impacto_id: this.impacto_id,
                             }
                         }).then( response => {
+                                    this.$store.commit('setLoading', false);
                                     this.$store.commit('setSistemas', response.data.data);
                                     this.$store.commit('setTotalSistemas', response.data.total);
                                     this.$store.commit('setPerPageSistemas', response.data.per_page);
                                     this.$store.commit('setLastPageSistemas', response.data.last_page);
                                     this.$store.commit('setPaginaActualSistemas', 1);
+
+                                    if (response.data.data.length > 0) {
+                                        this.$store.commit('setNoHaySistemas', '');
+                                    } else {
+                                        this.$store.commit('setNoHaySistemas', 'No se han encontrado sistemas');
+                                    }
+
                                 });
             },
             getClientes() {
                 axios.get(`/api/clientes`).then( response => {
-                    let clientesSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let clientesSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( cliente => {
                         clientesSelect.push({ value: cliente.id, text: cliente.nombre, selected: true })
@@ -271,7 +280,7 @@ export default {
             },
             getLideres() {
                 axios.get(`/api/lideres`).then( response => {
-                    let lideresSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let lideresSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( lider => {
                         lideresSelect.push({ value: lider.id, text: lider.name + ' ' + lider.apellido })
@@ -282,7 +291,7 @@ export default {
             },
             getRecursos() {
                 axios.get(`/api/miembros`).then( response => {
-                    let recursosSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let recursosSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( recurso => {
                         recursosSelect.push({ value: recurso.id, text: recurso.name + ' ' + recurso.apellido })
@@ -293,7 +302,7 @@ export default {
             },
             getEstados() {
                 axios.get(`/api/estados`).then( response => {
-                    let estadosSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let estadosSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( estado => {
                         estadosSelect.push({ value: estado.id, text: estado.nombre })
@@ -304,7 +313,7 @@ export default {
             },
             getCriticidades() {
                 axios.get(`/api/criticidad`).then( response => {
-                    let criticidadesSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let criticidadesSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( criticidad => {
                         criticidadesSelect.push({ value: criticidad.id, text: criticidad.nombre })
@@ -315,7 +324,7 @@ export default {
             },
             getLenguajes() {
                 axios.get(`/api/lenguajes`).then( response => {
-                    let lenguajesSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let lenguajesSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( lenguaje => {
                         lenguajesSelect.push({ value: lenguaje.id, text: lenguaje.nombre })
@@ -326,7 +335,7 @@ export default {
             },
             getMotores() {
                 axios.get(`/api/bases`).then( response => {
-                    let motoresSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let motoresSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( motor => {
                         motoresSelect.push({ value: motor.id, text: motor.nombre })
@@ -337,7 +346,7 @@ export default {
             },
             getAuthentications() {
                 axios.get(`/api/authentications`).then( response => {
-                    let authenticationsSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let authenticationsSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( authentication => {
                         authenticationsSelect.push({ value: authentication.id, text: authentication.nombre })
@@ -348,7 +357,7 @@ export default {
             },
             getImpactos() {
                 axios.get(`/api/impactos`).then( response => {
-                    let impactosSelect = [{ value: null, text: '-- Seleccionar --' }];
+                    let impactosSelect = [{ value: 0, text: '-- Seleccionar --' }];
 
                     response.data.forEach( impacto => {
                         impactosSelect.push({ value: impacto.id, text: impacto.nombre })
@@ -358,7 +367,7 @@ export default {
                  });
             },
             setLocalStorage() {
-                localStorage.setItem("termino", this.termino);
+                localStorage.setItem("termino", this.termino || '');
                 localStorage.setItem("cliente_id", this.cliente_id);
                 localStorage.setItem("lider_id", this.lider_id);
                 localStorage.setItem("recurso_id", this.recurso_id);

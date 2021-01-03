@@ -14,11 +14,15 @@
                         <h3 class="card-title">Cartera de Sistemas</h3>
                     </div>
                     
-                        <div v-if="this.sistemas.length === 0" class="card-body text-center" style="display: block;">
-                            No se han encontrado sistemas
+                        <div v-if="this.sistemas.length === 0 && !this.loading" class="card-body text-center" style="display: block;">
+                            {{ this.noHaySistemas }}
                         </div>
+
+                        <div v-if="this.loading">
+                            <loading-component/>
+                       </div>
                     
-                        <div v-if="this.sistemas.length > 0" class="card-body p-0 table-responsive" style="display: block;">
+                        <div v-if="this.sistemas.length > 0 && !this.loading" class="card-body p-0 table-responsive" style="display: block;">
                             <table class="table table-striped projects">
                                 <thead>
                                     <tr>
@@ -106,6 +110,7 @@ store,
 
         methods: {
             getSistemas(page = 1) {
+                this.$store.commit('setLoading', true);
                 axios.get(`/api/sistemas/all_sistemas?page=${page}`, {
                             params: {
                                 cliente_id: Number(localStorage.getItem("cliente_id")),
@@ -119,11 +124,19 @@ store,
                                 impacto_id: Number(localStorage.getItem("impacto_id")),
                             }
                         }).then( (response) => {
+                            this.$store.commit('setLoading', false);
                             this.$store.commit('setSistemas', response.data.data);
                             this.$store.commit('setTotalSistemas', response.data.total);
                             this.$store.commit('setPerPageSistemas', response.data.per_page);
                             this.$store.commit('setLastPageSistemas', response.data.last_page);
                             this.$store.commit('setPaginaActualSistemas', page);
+
+                            if (response.data.data.length > 0) {
+                                this.$store.commit('setNoHaySistemas', '');
+                            } else {
+                                this.$store.commit('setNoHaySistemas', 'No se han encontrado sistemas');
+                            }
+
                         });
             },
             goToPage(page) {
@@ -131,64 +144,16 @@ store,
                 this.$store.commit('setPaginaActualSistemas', page);
             },
             getClassAuthentication(id) {
-                switch (id) {
-                    case 1:
-                        return 'badge-success';
-                        break;
-
-                    case 2:
-                        return 'badge-primary';
-                        break;
-
-                    case 3:
-                        return 'badge-danger';
-                        break;
-
-                    case 4:
-                        return 'badge-dark';
-                        break;
-
-                    case 5:
-                        return 'badge-info';
-                        break;
-
-                    case 6:
-                        return 'badge-warning';
-                        break;
-                
-                    default:
-                        return 'badge-light';
-                        break;
-                }
+                return 'badge-dark';
             },
             getClassEstado(id) {
                 switch (id) {
                     case 1:
                         return 'badge-success';
                         break;
-
-                    case 2:
-                        return 'badge-primary';
-                        break;
-
-                    case 3:
-                        return 'badge-danger';
-                        break;
-
-                    case 4:
-                        return 'badge-dark';
-                        break;
-
-                    case 5:
-                        return 'badge-info';
-                        break;
-
-                    case 6:
-                        return 'badge-warning';
-                        break;
                 
                     default:
-                        return 'badge-light';
+                        return 'badge-dark';
                         break;
                 }
             },
@@ -216,11 +181,17 @@ store,
             sistemas() {
                 return this.$store.state.sistemas;
             },
+            loading() {
+                return this.$store.state.loading;
+            },
             pagina_actual_sistemas() {
                 return this.$store.state.pagina_actual_sistemas;
             },
             last_page_sistemas() {
                 return this.$store.state.last_page_sistemas;
+            },
+            noHaySistemas() {
+                return this.$store.state.noHaySistemas;
             },
             
         }

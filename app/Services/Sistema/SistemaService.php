@@ -15,7 +15,7 @@ class SistemaService extends BaseService
   public function buscar($termino, $filtros)
   {
 
-        $paginator_items = env("PAGINATOR_ITEMS", 10);
+        $paginator_items = env("PAGINATOR_ITEMS", 5);
 
         $cliente_id     = $filtros['cliente_id'] ?? 0;
         $lider_id       = $filtros['lider_id'] ?? 0;
