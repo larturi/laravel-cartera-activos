@@ -202,7 +202,10 @@ class CreateSistemasTable extends Migration
             $table->foreignId('sistema_id')->constrained();
             $table->foreignId('ambiente_id')->constrained();
             $table->string('url')->nullable();
-            $table->text('credenciales_bd')->nullable();
+            $table->string('base')->nullable();
+            $table->string('servidor')->nullable();
+            $table->string('usuario_bd')->nullable();
+            $table->text('info')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
 

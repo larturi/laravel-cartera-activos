@@ -177,6 +177,7 @@
         <comentarios-component
           :sistema="{{ $sistema }}"
           columna="comentarios_desarrollo"
+          placeholder="Ingresar mas información. Por ejemplo, versión mínima requerida del lenguaje, deuda técnica, etc."
           canedit="{{ Auth::user()->canEdit() }}"
         ></comentarios-component>
     </div>

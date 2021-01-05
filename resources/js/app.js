@@ -74,7 +74,8 @@ const app = new Vue({
 $(document).ready(function() {
     let showFilter = localStorage.getItem('showFilter');
 
-    if (showFilter === '0') {
+    if (showFilter === '0' || showFilter === null) {
+        localStorage.setItem('showFilter', '0');
         $("#filterCard").addClass("collapsed-card");
     } else {
         $("#filterCard").removeClass("collapsed-card");

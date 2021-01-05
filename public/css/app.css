@@ -148,6 +148,12 @@ textarea:disabled {
 
 /******************** Extra Small *******************/
 
+@media (max-width: 576px) {
+  .card-body.table-responsive {
+    overflow-x: auto !important;
+  }
+}
+
 /********************** Small **********************/
 
 /********************** Medium **********************/

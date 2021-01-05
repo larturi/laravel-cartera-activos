@@ -608,7 +608,10 @@ class SistemaController extends Controller
         $ambienteSistema->sistema_id = $request['sistema_id'];
         $ambienteSistema->ambiente_id = $request['ambiente_id'];
         $ambienteSistema->url = $request['url'];
-        $ambienteSistema->credenciales_bd= $request['credenciales_bd'];
+        $ambienteSistema->base= $request['base'];
+        $ambienteSistema->servidor= $request['servidor'];
+        $ambienteSistema->usuario_bd= $request['usuario_bd'];
+        $ambienteSistema->info= $request['info'];
         $ambienteSistema->user_id = auth()->id();
 
         $validate = SistemaAmbientes::where('sistema_id', $request['sistema_id'])
@@ -661,7 +664,10 @@ class SistemaController extends Controller
               'sistema_id'      => $request['sistema_id'],
               'ambiente_id'     => $request['ambiente_id'],
               'url'             => $request['url'],
-              'credenciales_bd' => $request['credenciales_bd'],
+              'base'            => $request['base'],
+              'servidor'        => $request['servidor'],
+              'usuario_bd'      => $request['usuario_bd'],
+              'info'            => $request['info'],
           ]);
     }
 

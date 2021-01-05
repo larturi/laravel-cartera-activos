@@ -25,6 +25,7 @@
                                 :disabled="!editMode"
                                 cols="30"
                                 rows="5"
+                                :placeholder="placeholder"
                                 v-model="comentario"
                                 class="form-control">
                             </textarea>
@@ -56,7 +57,7 @@
 
 <script>
     export default {
-        props: ['sistema', 'columna', 'canedit'],
+        props: ['sistema', 'columna', 'canedit', 'placeholder'],
 
         data() {
             return {

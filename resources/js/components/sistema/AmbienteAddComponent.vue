@@ -43,14 +43,46 @@
                                     placeholder="Ingresar url del sistema"
                                     v-model="url">
 
-                                <label for="url" class="">
-                                    Datos de Conexión a la Base de Datos:
+                                <label for="base" class="">
+                                    Nombre de la BD:
                                 </label>
-                                <textarea name="bd"
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    :class="this.urlError ? 'is-invalid' : ''"
+                                    name="base"
+                                    placeholder="Ingresar nombre exacto de la BD"
+                                    v-model="base">
+
+                                <label for="servidor" class="">
+                                    Servidor:
+                                </label>
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    :class="this.urlError ? 'is-invalid' : ''"
+                                    name="servidor"
+                                    placeholder="Ingresar nombre exacto del servidor de BD"
+                                    v-model="servidor">
+
+                                <label for="usuario_bd" class="">
+                                    Usuario BD:
+                                </label>
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    :class="this.urlError ? 'is-invalid' : ''"
+                                    name="usuario_bd"
+                                    placeholder="Ingresar nombre exacto del servidor de BD"
+                                    v-model="usuario_bd">
+
+                                <label for="info" class="">
+                                    Mas información de la Base de Datos:
+                                </label>
+                                <textarea name="info"
                                         class="form-control mb-2"
-                                        v-model="bd"
+                                        v-model="info"
+                                        placeholder="Mas información, por ejemplo tnsname..."
                                         cols="30"
-                                        rows="8"></textarea>
+                                        rows="8">
+                                </textarea>
                             </div>
 
                             <div class="row mx-2" v-if="hasErrorUnique">
@@ -109,14 +141,45 @@
                                     placeholder="Ingresar url del sistema"
                                     v-model="ambienteEdit.url">
 
-                                <label for="url" class="">
-                                    Datos de Conexión a la Base de Datos:
+                                <label for="base" class="">
+                                    Nombre de la BD:
                                 </label>
-                                <textarea name="bd"
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    :class="this.urlError ? 'is-invalid' : ''"
+                                    name="base"
+                                    placeholder="Ingresar nombre exacto de la BD"
+                                    v-model="ambienteEdit.base">
+
+                                <label for="servidor" class="">
+                                    Servidor:
+                                </label>
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    :class="this.urlError ? 'is-invalid' : ''"
+                                    name="servidor"
+                                    placeholder="Ingresar nombre exacto del servidor de BD"
+                                    v-model="ambienteEdit.servidor">
+
+                                <label for="usuario_bd" class="">
+                                    Usuario BD:
+                                </label>
+                                <input type="text"
+                                    class="form-control mb-3"
+                                    :class="this.urlError ? 'is-invalid' : ''"
+                                    name="usuario_bd"
+                                    placeholder="Ingresar nombre exacto del servidor de BD"
+                                    v-model="ambienteEdit.usuario_bd">
+
+                                <label for="info" class="">
+                                    Mas información de la Base de Datos:
+                                </label>
+                                <textarea name="info"
                                         class="form-control mb-2"
-                                        v-model="ambienteEdit.credenciales_bd"
+                                        v-model="ambienteEdit.info"
                                         cols="30"
-                                        rows="8"></textarea>
+                                        rows="8">
+                                </textarea>
                             </div>
 
                             <div class="row mx-2" v-if="hasErrorUnique">
@@ -166,7 +229,10 @@ import {validURL} from '../../helpers';
             return {
                 selectedAmbiente: null,
                 url: '',
-                bd: '',
+                info: '',
+                base: '',
+                servidor: '',
+                usuario_bd: '',
                 urlError: false,
                 nullAmbienteError: false,
                 hasErrorUnique: false,
@@ -217,7 +283,10 @@ import {validURL} from '../../helpers';
                         sistema_id: this.sistema,
                         ambiente_id: this.selectedAmbiente,
                         url: this.url,
-                        credenciales_bd: this.bd,
+                        base: this.base,
+                        servidor: this.servidor,
+                        usuario_bd: this.usuario_bd,
+                        info: this.info,
                     };
 
                     axios.post(`/api/ambientes-sistema`, params)
@@ -256,7 +325,10 @@ import {validURL} from '../../helpers';
                         sistema_id: this.sistema,
                         ambiente_id: this.ambienteEdit.ambiente_id,
                         url: this.ambienteEdit.url,
-                        credenciales_bd: this.ambienteEdit.credenciales_bd,
+                        base: this.ambienteEdit.base,
+                        servidor: this.ambienteEdit.servidor,
+                        usuario_bd: this.ambienteEdit.usuario_bd,
+                        info: this.ambienteEdit.info,
                     };
 
                     axios.put(`/api/ambiente-sistema`, params)

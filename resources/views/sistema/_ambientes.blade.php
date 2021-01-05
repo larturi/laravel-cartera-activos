@@ -24,6 +24,7 @@
     <comentarios-component
       :sistema="{{ $sistema }}"
       columna="comentarios_ambientes"
+      placeholder="Ingresar mas información..."
       canedit="{{ Auth::user()->canEdit() }}"
     ></comentarios-component>
 </div>

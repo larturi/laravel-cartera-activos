@@ -17,14 +17,7 @@ class LenguajesSeeder extends Seeder
     {
 
         DB::table('lenguajes')->insert([
-            'nombre'     => 'PHP 5',
-            'user_id'    => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-
-        DB::table('lenguajes')->insert([
-            'nombre'     => 'PHP 7',
+            'nombre'     => 'PHP',
             'user_id'    => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

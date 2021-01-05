@@ -23,7 +23,7 @@
                        </div>
                     
                         <div v-if="this.sistemas.length > 0 && !this.loading" class="card-body p-0 table-responsive" style="display: block;">
-                            <table class="table table-striped projects">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nombre</th>
@@ -109,21 +109,20 @@ store,
         },
 
         methods: {
-            getSistemas(page = 1) {
+            async getSistemas(page = 1) {
                 this.$store.commit('setLoading', true);
 
                 let texto = 'all_sistemas';
 
-                if (this.termino != '') {
+                if (this.termino != '' && this.termino != null) {
                     texto = this.termino;
                 }
 
-                console.log(texto);
-                console.log(this.termino);
+                await this.setLocalStorageInit();
 
                 axios.get(`/api/sistemas/${texto}?page=${page}`, {
                             params: {
-                                cliente_id: Number(localStorage.getItem("cliente_id")),
+                                cliente_id: Number(localStorage.getItem("cliente_id")) || 0,
                                 lider_id: Number(localStorage.getItem("lider_id")),
                                 recurso_id: Number(localStorage.getItem("recurso_id")),
                                 estado_id: Number(localStorage.getItem("estado_id")),
@@ -180,6 +179,19 @@ store,
                         return 'badge-light';
                         break;
                 }
+            },
+            async setLocalStorageInit() {
+                (localStorage.getItem("termino")       === null) ? localStorage.setItem("termino", '') : 'all_sistemas';
+                (localStorage.getItem("cliente_id")    === null) ? localStorage.setItem("cliente_id", 0) : '';
+                (localStorage.getItem("lider_id")      === null) ? localStorage.setItem("clilider_idente_id", 0) : '';
+                (localStorage.getItem("recurso_id")    === null) ? localStorage.setItem("recurso_id", 0) : '';
+                (localStorage.getItem("estado_id")     === null) ? localStorage.setItem("estado_id", 0) : '';
+                (localStorage.getItem("criticidad_id") === null) ? localStorage.setItem("criticidad_id", 0) : '';
+                (localStorage.getItem("lenguaje_id")   === null) ? localStorage.setItem("lenguaje_id", 0) : '';
+                (localStorage.getItem("motor_id")      === null) ? localStorage.setItem("motor_id", 0) : '';
+                (localStorage.getItem("login_id")      === null) ? localStorage.setItem("login_id", 0) : '';
+                (localStorage.getItem("impacto_id")    === null) ? localStorage.setItem("impacto_id", 0) : '';
+                return true;
             }
         },
 

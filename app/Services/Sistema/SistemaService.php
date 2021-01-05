@@ -34,7 +34,8 @@ class SistemaService extends BaseService
                         ->with('criticidad');
                         
         if ($termino != 'all_sistemas') {
-            $query = $query->where('nombre', 'like', '%' . $termino . '%');
+            $query = $query->where('nombre', 'like', '%' . $termino . '%')
+                           ->orWhere('sigla', 'like', '%' . $termino . '%');
         }
 
         if ($cliente_id != 0) {

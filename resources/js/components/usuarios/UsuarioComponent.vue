@@ -58,7 +58,7 @@
             <a v-if="usuario.habilitado === 1 && usuario.approved === 1 && !edit"
                href="#"
                class="mr-2 btn btn-primary btn-sm btn-block mb-2"
-               v-on:click.prevent="onClickAsignarRol()">Cambiar Rol
+               v-on:click.prevent="onClickAsignarRol()">Rol
             </a>
         </td>
     </tr>

@@ -1,28 +1,22 @@
 /******************** Extra Small *******************/
+
 @media (max-width: 576px) {
-
-
-
+    .card-body.table-responsive {
+        overflow-x: auto !important;
+    }
 }
+
 
 /********************** Small **********************/
-@media (min-width: 576px) {
 
+@media (min-width: 576px) {}
 
-
-}
 
 /********************** Medium **********************/
-@media (min-width: 768px) {
 
+@media (min-width: 768px) {}
 
-
-}
 
 /********************** Large ***********************/
-@media (min-width: 992px) {
 
-
-
-
-}
+@media (min-width: 992px) {}

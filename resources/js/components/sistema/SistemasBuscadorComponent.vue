@@ -31,7 +31,7 @@
                                 <input
                                     type="text"
                                     placeholder="Buscar por nombre"
-                                    class="form-control"
+                                    class="form-control mb-3"
                                     v-model="termino"
                                     @keyup="procesarBusqueda"
                                     @keypress.enter.prevent=""
@@ -232,7 +232,7 @@ export default {
             procesarBusqueda() {
                 let texto = this.termino;
 
-                if (texto === '') {
+                if (texto === '' || this.termino === null) {
                     texto = 'all_sistemas';
                 }
 
@@ -427,3 +427,8 @@ export default {
 
 </script>
 
+<style scoped>
+    label {
+        font-weight: 500 !important;
+    }
+</style>
