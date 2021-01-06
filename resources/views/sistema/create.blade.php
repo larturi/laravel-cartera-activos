@@ -24,7 +24,7 @@
 
                                     <div class="row">
                                         {{-- Nombre --}}
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="nombre">Nombre:</label>
                                                 <input id="nombre"
@@ -45,7 +45,7 @@
                                         </div>
 
                                         {{-- Sigla --}}
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <div class="mb-3">
                                                 <label for="sigla">Sigla:</label>
                                                 <input id="sigla"
@@ -93,6 +93,44 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        {{-- Acceso --}}
+                                        <div class="col-lg-2">
+
+                                            <label>Tipo de Acceso:</label>
+
+                                            <div class="row mb-3">
+
+                                                <div class="col">
+                                                    {{-- Intranet --}}
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" 
+                                                               type="checkbox" 
+                                                               value="{{  old('intranet') || 1 }}"
+                                                               {{  old('intranet') ? 'checked' : '' }}
+                                                               id="intranet" 
+                                                               name="intranet"
+                                                               >
+                                                        <label class="form-check-label" for="intranet">Intranet</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    {{-- Internet --}}
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" 
+                                                               type="checkbox" 
+                                                               value="{{  old('internet') || 1 }}"
+                                                               {{  old('internet') ? 'checked' : '' }}
+                                                               id="internet" 
+                                                               name="internet">
+                                                        <label class="form-check-label" for="internet">Internet</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
                                     </div>
 
                                     {{-- Descripcion --}}

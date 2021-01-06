@@ -95,6 +95,9 @@ class SistemaController extends Controller
 
         $data = $request->validated();
 
+        $intranet = (isset($data['intranet'])) ? $data['intranet'] : '0';
+        $internet = (isset($data['internet'])) ? $data['internet'] : '0';
+
         $sistema = auth()->user()->sistemas()->create([
             'nombre'                   => $data['nombre'],
             'sigla'                    => $data['sigla'],
@@ -105,6 +108,8 @@ class SistemaController extends Controller
             'authentication_id'        => $data['authentication_id'],
             'estado_id'                => $data['estado_id'],
             'f_produccion'             => $data['f_produccion'],
+            'intranet'                 => $intranet,
+            'internet'                 => $internet,
             'cliente_id'               => $data['cliente_id'],
             'cliente_info'             => $data['cliente_info'],
             'lenguajes'                => '[]',

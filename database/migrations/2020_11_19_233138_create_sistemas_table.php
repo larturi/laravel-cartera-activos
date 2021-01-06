@@ -13,7 +13,6 @@ class CreateSistemasTable extends Migration
      */
     public function up()
     {
-
         Schema::create('repositorios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
@@ -129,6 +128,8 @@ class CreateSistemasTable extends Migration
             $table->text('comentarios_desarrollo')->nullable();
             $table->text('comentarios_documentacion')->nullable();
             $table->text('comentarios_ambientes')->nullable();
+            $table->boolean('intranet')->nullable();
+            $table->boolean('internet')->nullable();
             $table->date('f_baja')->nullable();
             $table->timestamps();
         });

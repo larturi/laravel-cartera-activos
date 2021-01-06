@@ -35,6 +35,8 @@ class SistemaPost extends FormRequest
             'authentication_id'          => 'required',
             'estado_id'                  => 'required',
             'cliente_id'                 => 'required',
+            'intranet'                   => 'nullable',
+            'internet'                   => 'nullable',
             'f_produccion'               => 'nullable|date',
             'cliente_info'               => 'max:500',
         ];

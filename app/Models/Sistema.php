@@ -38,6 +38,8 @@ class Sistema extends Model
        'estado_id',
        'cliente_info',
        'lider_id',
+       'intranet',
+       'internet',
        'f_produccion',
        'url_checksystem',
        'f_baja'
