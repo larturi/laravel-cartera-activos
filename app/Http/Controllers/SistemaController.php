@@ -100,7 +100,7 @@ class SistemaController extends Controller
 
         $sistema = auth()->user()->sistemas()->create([
             'nombre'                   => $data['nombre'],
-            'sigla'                    => $data['sigla'],
+            'sigla'                    => strtoupper($data['sigla']),
             'descripcion'              => trim($data['descripcion']),
             'lider_id'                 => $data['lider_id'],
             'criticidad_id'            => $data['criticidad_id'],
@@ -161,14 +161,19 @@ class SistemaController extends Controller
 
         $data = $request->validated();
 
+        $intranet = (isset($data['intranet'])) ? $data['intranet'] : '0';
+        $internet = (isset($data['internet'])) ? $data['internet'] : '0';
+
         $sistema->nombre                   = $data['nombre'];
-        $sistema->sigla                    = $data['sigla'];
+        $sistema->sigla                    = strtoupper($data['sigla']);
         $sistema->descripcion              = trim($data['descripcion']);
         $sistema->lider_id                 = $data['lider_id'];
         $sistema->criticidad_id            = $data['criticidad_id'];
         $sistema->justificacion_criticidad = trim($data['justificacion_criticidad']);
         $sistema->authentication_id        = $data['authentication_id'];
         $sistema->estado_id                = $data['estado_id'];
+        $sistema->intranet                 = $intranet;
+        $sistema->internet                 = $internet;
         $sistema->f_produccion             = $data['f_produccion'];
         $sistema->cliente_id               = $data['cliente_id'];
         $sistema->cliente_info             = $data['cliente_info'];

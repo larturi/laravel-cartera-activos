@@ -26,6 +26,8 @@ class SistemaService extends BaseService
         $base_id        = $filtros['base_id'] ?? 0;
         $login_id       = $filtros['login_id'] ?? 0;
         $impacto_id     = $filtros['impacto_id'] ?? 0;
+        $acceso_id      = $filtros['acceso_id'] ?? 0;
+        $servidorBd     = $filtros['servidorBd'] ?? '';
         
         $query = Sistema::with('authentication')
                         ->with('lider')
@@ -86,6 +88,26 @@ class SistemaService extends BaseService
                 $join->on('tbl3.sistema_id', '=', 'sistemas.id')
                         ->where('tbl3.caracteristica_type', '=', 'App\Models\Impacto')
                         ->where('tbl3.caracteristica_id', '=', $impacto_id);
+            });
+        }
+
+        if ($acceso_id == 1) {
+            $query = $query->where('intranet', '=', 1);
+        }
+
+        if ($acceso_id == 2) {
+            $query = $query->where('internet', '=', 1);
+        }
+
+        if ($acceso_id == 100) {
+            $query = $query->where('intranet', '=', 1)
+                           ->where('internet', '=', 1);
+        }
+
+        if ($servidorBd != '') {
+            $query = $query->join('sistema_ambientes as tbl5', function ($join) use($servidorBd) {
+                $join->on('tbl5.sistema_id', '=', 'sistemas.id')
+                        ->where('tbl5.servidor', 'like', '%' . $servidorBd . '%');
             });
         }
 

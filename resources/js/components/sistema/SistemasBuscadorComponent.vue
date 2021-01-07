@@ -23,7 +23,7 @@
 
                     <div class="row">
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div>
                                 <label>
                                     Sistema:
@@ -40,7 +40,7 @@
 
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="mb-3">
                                 <label>Area Solicitante:</label>
                                 <b-form-select 
@@ -55,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="mb-3">
                                 <label>Líder:</label>
                                 <b-form-select 
@@ -69,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="mb-3">
                                 <label>Recurso:</label>
                                 <b-form-select 
@@ -83,9 +83,19 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="mb-3">
+                                <label>Acceso:</label>
+                                <b-form-select 
+                                    v-model="acceso_id" 
+                                    :options="accesos"
+                                    value-field="value"
+                                    text-field="text"
+                                    @change="procesarBusqueda"
+                                    class="custom-select">
+                                </b-form-select>
+                            </div>
+                        </div>
 
                         <div class="col-lg-2">
                             <div class="mb-3">
@@ -100,6 +110,10 @@
                                 </b-form-select>
                             </div>
                         </div>
+
+                    </div>
+
+                    <div class="row">
 
                         <div class="col-lg-2">
                             <div class="mb-3">
@@ -134,6 +148,20 @@
                                     @change="procesarBusqueda"
                                     class="custom-select">
                                 </b-form-select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="mb-3">
+                                <label>Servidor BD:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Servidor BD"
+                                    class="form-control mb-3"
+                                    v-model="servidorBd"
+                                    @keyup="procesarBusqueda"
+                                    @keypress.enter.prevent=""
+                                    >
                             </div>
                         </div>
 
@@ -225,6 +253,9 @@ export default {
                login_id: 0,
                impactos: [],
                impacto_id: 0,
+               accesos: [],
+               acceso_id: 0,
+               servidorBd: '',
             }
         },
 
@@ -250,6 +281,8 @@ export default {
                                 base_id: this.motor_id,
                                 login_id: this.login_id,
                                 impacto_id: this.impacto_id,
+                                acceso_id: this.acceso_id,
+                                servidorBd: this.servidorBd,
                             }
                         }).then( response => {
                                     this.$store.commit('setLoading', false);
@@ -366,6 +399,17 @@ export default {
                     this.impactos = impactosSelect;
                  });
             },
+            getAccesos() {
+                let accesosSelect = [
+                    { value: 0, text: '-- Seleccionar --' },
+                    { value: 1, text: 'Intranet' },
+                    { value: 2, text: 'Internet' },
+                    { value: 100, text: 'Intranet + Internet' },
+                ];
+
+                this.accesos = accesosSelect;
+                
+            },
             setLocalStorage() {
                 localStorage.setItem("termino", this.termino);
                 localStorage.setItem("cliente_id", this.cliente_id);
@@ -377,6 +421,8 @@ export default {
                 localStorage.setItem("motor_id", this.motor_id);
                 localStorage.setItem("login_id", this.login_id);
                 localStorage.setItem("impacto_id", this.impacto_id);
+                localStorage.setItem("acceso_id", this.acceso_id);
+                localStorage.setItem("servidorBd", this.servidorBd);
             },
 
             getLocalStorage() {
@@ -392,6 +438,8 @@ export default {
                 this.motor_id      = Number(localStorage.getItem("motor_id"));
                 this.login_id      = Number(localStorage.getItem("login_id"));
                 this.impacto_id    = Number(localStorage.getItem("impacto_id"));
+                this.acceso_id     = Number(localStorage.getItem("acceso_id"));
+                this.servidorBd    = localStorage.getItem("servidorBd");
             },
 
             limpiarFiltros() {
@@ -405,6 +453,8 @@ export default {
                 this.motor_id = 0;
                 this.login_id = 0;
                 this.impacto_id = 0;
+                this.acceso_id = 0;
+                this.servidorBd = '';
 
                 this.procesarBusqueda();
             }
@@ -421,6 +471,7 @@ export default {
             this.getMotores();
             this.getAuthentications();
             this.getImpactos();
+            this.getAccesos();
         },
 
     }

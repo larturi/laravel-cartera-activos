@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'logo' => '<b>Mis Sistemas</b>',
+    'logo' => '<b style="font-size:16px;!important;">CARTERA DE SISTEMAS</b>',
     'logo_img' => './img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
