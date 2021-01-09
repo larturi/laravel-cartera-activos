@@ -37,27 +37,32 @@
         <td>
             <a v-if="usuario.approved === 0 && edit === false && usuario.habilitado === 1"
                href="#"
-               class="mr-2 btn btn-success btn-sm btn-block mb-2"
+               class="mr-2 btn btn-success btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickAsignarRol()">Asignar Rol
             </a>
             <a v-if="edit"
                href="#"
-               class="mr-2 btn btn-secondary btn-sm btn-block mb-2"
+               class="mr-2 btn btn-secondary btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickCancelar()">Cancelar
             </a>
             <a v-if="usuario.habilitado === 1"
                href="#"
-               class="mr-2 btn btn-danger btn-sm btn-block mb-2"
+               class="mr-2 btn btn-danger btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickBaja()">Baja
             </a>
-            <a v-if="usuario.habilitado === 0"
+            <p v-if="usuario.habilitado === 0 && usuario.email_verified_at === null"
+               class="mr-2 mb-2 mt-2"
+               >El usuario debe confirmar su email
+            </p>
+           
+            <a v-if="usuario.habilitado === 0 && usuario.email_verified_at !== null"
                href="#"
-               class="mr-2 btn btn-success btn-sm btn-block mb-2"
+               class="mr-2 btn btn-success btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickHabilitar()">Habilitar
             </a>
             <a v-if="usuario.habilitado === 1 && usuario.approved === 1 && !edit"
                href="#"
-               class="mr-2 btn btn-primary btn-sm btn-block mb-2"
+               class="mr-2 btn btn-primary btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickAsignarRol()">Rol
             </a>
         </td>

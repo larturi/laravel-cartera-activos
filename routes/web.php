@@ -138,6 +138,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // Usuarios
     Route::post('/usuarios/buscar', 'usuarios\UsuarioController@buscar')->name('usuarios.buscar');
     Route::get('/usuarios', 'usuarios\UsuarioController@index')->name('usuarios.index');
+    Route::get('/solicitudes', 'usuarios\UsuarioController@solicitudes')->name('usuarios.solicitudes');
     Route::get('/usuarios/{usuario}', 'usuarios\UsuarioController@show')->name('usuarios.show');
     Route::put('/usuarios/{usuario}', 'usuarios\UsuarioController@update')->name('usuarios.update');
     Route::post('/usuarios/update/baja', 'usuarios\UsuarioController@delete')->name('usuarios.delete');
@@ -159,3 +160,9 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return redirect('sistemas');
 });
+
+Route::get('/pendiente-aprobacion', function () {
+    Auth::logout();
+    return redirect('/login')->with('message', 'La verificación de email fue correcta. Falta que el Administrador apruebe tu solicitud.');;
+});
+

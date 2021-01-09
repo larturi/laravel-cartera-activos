@@ -31,6 +31,14 @@ class UsuarioController extends Controller
     
     }
 
+    public function solicitudes()
+    {
+        $usuarios= $this->usuarioService->buscar();
+
+        return view('usuarios/solicitudes');
+    
+    }
+
     public function getUsuarios(Request $request)
     {
         $termino = $request['termino'];

@@ -336,6 +336,12 @@ return [
                     'icon'    => 'fas fa-fw fa-user',
                 ],
 
+                [
+                    'text'    => 'Solicitudes',
+                    'route'     => 'usuarios.solicitudes',
+                    'icon'    => 'fas fa-fw fa-user-check',
+                ],
+
             ],
 
         ],

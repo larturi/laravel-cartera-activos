@@ -60,6 +60,7 @@ Vue.component('ambiente-add-component', require('./components/sistema/AmbienteAd
 Vue.component('usuarios-component', require('./components/usuarios/UsuariosComponent.vue').default);
 Vue.component('usuario-component', require('./components/usuarios/UsuarioComponent.vue').default);
 Vue.component('usuarios-buscador-component', require('./components/usuarios/UsuariosBuscadorComponent.vue').default);
+Vue.component('usuarios-solicitud-component', require('./components/usuarios/UsuariosSolicitudComponent.vue').default);
 
 // Sistemas
 Vue.component('sistemas-component', require('./components/sistema/SistemasComponent.vue').default);

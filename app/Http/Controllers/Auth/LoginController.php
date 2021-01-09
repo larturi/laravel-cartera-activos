@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 // @author: Leandro Arturi (u57322)
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
@@ -60,4 +61,6 @@ class LoginController extends Controller
             return redirect()->back()->with('message', 'Tu usuario fue dado de baja por el Administrador.');
         }
     }
+
+
 }
