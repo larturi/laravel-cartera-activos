@@ -60,6 +60,11 @@
                class="mr-2 btn btn-success btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickHabilitar()">Habilitar
             </a>
+            <a v-if="usuario.habilitado === 0 && usuario.email_verified_at !== null"
+               href="#"
+               class="mr-2 btn btn-danger btn-sm btn-block mb-2 mt-2"
+               v-on:click.prevent="onClickRechazar()">Rechazar
+            </a>
             <a v-if="usuario.habilitado === 1 && usuario.approved === 1 && !edit"
                href="#"
                class="mr-2 btn btn-primary btn-sm btn-block mb-2 mt-2"
@@ -131,6 +136,17 @@
                 };
 
                 axios.post(`/usuarios/update/habilitar`, params).then( (response => {
+                    const usuario = response.data;
+                    this.$emit('update', usuario);
+                    this.habilitado = true;
+                }));
+            },
+            onClickRechazar() {
+                const params = {
+                    id_usuario: this.usuario.id
+                };
+
+                axios.post(`/usuarios/update/rechazar`, params).then( (response => {
                     const usuario = response.data;
                     this.$emit('update', usuario);
                     this.habilitado = true;

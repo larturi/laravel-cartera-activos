@@ -84,6 +84,7 @@ import store from '../store/usuarios';
                 });
             },
             update(index, usuario) {
+                this.getUsers();
                 const updatedUser = usuario;
                 const indexOfItemInArray = this.users.findIndex(q => q.id === updatedUser.id);
                 this.users.splice(indexOfItemInArray, 1, updatedUser);

@@ -13,17 +13,35 @@
     @php( $logout_url = $logout_url ? url($logout_url) : '' )
 @endif
 
+{{-- Notificaciones --}}
+<li class="nav-item dropdown show">
+    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+        <i class="far fa-bell"></i>
+        <span class="badge navbar-badge"></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+        <span class="dropdown-item dropdown-header">No hay notificaciones</span>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item">
+            <i class="fas fa-user-check mr-2"></i> Sin solicitudes pendientes
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item dropdown-footer"></a>
+    </div>
+</li>
+
+{{-- User menu toggler --}}
 <li class="nav-item dropdown user-menu">
 
-    {{-- User menu toggler --}}
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
         @if(config('adminlte.usermenu_image'))
             <img src="{{ Auth::user()->adminlte_image() }}"
-                 class="user-image img-circle elevation-2"
-                 alt="{{ Auth::user()->name }}">
+                    class="user-image img-circle elevation-2"
+                    alt="{{ Auth::user()->name }}">
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{ Auth::user()->name }}
+            {{ Auth::user()->name . ' ' . Auth::user()->apellido }} 
         </span>
     </a>
 
@@ -36,8 +54,8 @@
                 @if(!config('adminlte.usermenu_image')) h-auto @endif">
                 @if(config('adminlte.usermenu_image'))
                     <img src="{{ Auth::user()->adminlte_image() }}"
-                         class="img-circle elevation-2"
-                         alt="{{ Auth::user()->name . ' ' . Auth::user()->apellido }}">
+                            class="img-circle elevation-2"
+                            alt="{{ Auth::user()->name . ' ' . Auth::user()->apellido }}">
                 @endif
                 <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
                     {{ Auth::user()->name . ' ' . Auth::user()->apellido }}
@@ -66,9 +84,9 @@
                 <p>Usuario: {{ Auth::user()->user }}</p>
                 <p>Email: {{ Auth::user()->email }}</p>
                 <p>Perfil: {{ Auth::user()->perfil }}</p>
-             </li>
+                </li>
             <li class="list-group-item">
-               <a href="{{ route('password.request') }}">Cambiar Contraseña</a>
+                <a href="{{ route('password.request') }}">Cambiar Contraseña</a>
             </li>
         </ul>
 
@@ -81,7 +99,7 @@
                 </a>
             @endif
             <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif"
-               href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-fw fa-power-off"></i>
                 {{ __('adminlte::adminlte.log_out') }}
             </a>

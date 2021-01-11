@@ -25,18 +25,12 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $usuarios= $this->usuarioService->buscar();
-
         return view('usuarios/index');
-    
     }
 
     public function solicitudes()
     {
-        $usuarios= $this->usuarioService->buscar();
-
         return view('usuarios/solicitudes');
-    
     }
 
     public function getUsuarios(Request $request)
@@ -73,6 +67,15 @@ class UsuarioController extends Controller
     {
         $usuario = User::find($request['id_usuario']);
         $usuario->habilitado = 1;
+        $usuario->save();
+
+        return $usuario;
+    }
+
+    public function rechazar(Request $request)
+    {
+        $usuario = User::find($request['id_usuario']);
+        $usuario->habilitado = 2;
         $usuario->save();
 
         return $usuario;
