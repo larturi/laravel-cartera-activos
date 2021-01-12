@@ -24,6 +24,7 @@ class RepositorioController extends Controller
 
     public function inicio()
     {
+        $this->authorize(Auth()->user());
         return view('maestros/repositorios');
     }
 

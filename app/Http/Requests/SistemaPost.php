@@ -28,7 +28,7 @@ class SistemaPost extends FormRequest
         return [
             'nombre'                     => 'required|min:3|max:30',
             'sigla'                      => 'required|min:3|max:6',
-            'descripcion'                => 'required|min:20|max:500',
+            'descripcion'                => 'required|min:20|max:1000',
             'lider_id'                   => 'required',
             'criticidad_id'              => 'required',
             'justificacion_criticidad'   => 'nullable',
@@ -38,7 +38,7 @@ class SistemaPost extends FormRequest
             'intranet'                   => 'nullable',
             'internet'                   => 'nullable',
             'f_produccion'               => 'nullable|date',
-            'cliente_info'               => 'max:500',
+            'cliente_info'               => 'max:1000',
         ];
     }
 

@@ -17,48 +17,60 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['auth', 'verified']], function() {
+Route::group(['middleware' => ['auth', 'verified', 'admin']], function() {
 
     // CRUD Maestros
     Route::get('/ambientes', 'maestros\AmbienteController@inicio')->name('ambientes.inicio');
+    Route::get('/lenguajes', 'maestros\LenguajeController@inicio')->name('lenguajes.inicio');
+    Route::get('/clientes', 'maestros\ClienteController@inicio')->name('clientes.inicio');
+    Route::get('/bases', 'maestros\BaseController@inicio')->name('bases.inicio');
+    Route::get('/roles', 'maestros\RoleController@inicio')->name('roles.inicio');
+    Route::get('/perfiles', 'maestros\PerfileController@inicio')->name('perfiles.inicio');
+    Route::get('/authentications', 'maestros\AuthenticationController@inicio')->name('authentications.inicio');
+    Route::get('/estados', 'maestros\EstadoController@inicio')->name('estados.inicio');
+    Route::get('/criticidad', 'maestros\CriticidadController@inicio')->name('criticidad.inicio');
+    Route::get('/repositorios', 'maestros\RepositorioController@inicio')->name('repositorios.inicio');
+    Route::get('/documentations', 'maestros\DocumentationController@inicio')->name('documentations.inicio');
+    Route::get('/impactos', 'maestros\ImpactoController@inicio')->name('impactos.inicio');
+
+});
+
+Route::group(['middleware' => ['auth', 'verified', 'seguridad']], function() {
+
+    // Usuarios
+    Route::post('/usuarios/buscar', 'usuarios\UsuarioController@buscar')->name('usuarios.buscar');
+    Route::get('/usuarios', 'usuarios\UsuarioController@index')->name('usuarios.index');
+    Route::get('/solicitudes', 'usuarios\UsuarioController@solicitudes')->name('usuarios.solicitudes');
+    Route::get('/usuarios/{usuario}', 'usuarios\UsuarioController@show')->name('usuarios.show');
+    Route::put('/usuarios/{usuario}', 'usuarios\UsuarioController@update')->name('usuarios.update');
+    Route::post('/usuarios/update/baja', 'usuarios\UsuarioController@delete')->name('usuarios.delete');
+    Route::post('/usuarios/update/habilitar', 'usuarios\UsuarioController@habilitar')->name('usuarios.habilitar');
+    Route::post('/usuarios/update/rechazar', 'usuarios\UsuarioController@rechazar')->name('usuarios.rechazar');
+    Route::get('/api/usuarios/{termino}', 'usuarios\UsuarioController@getUsuarios')->name('usuarios.get');
+    Route::get('/pendiente-aprobacion', 'usuarios\UsuarioController@pendienteAprobacion')->name('pendiente.aprobacion');
+
+});
+
+Route::group(['middleware' => ['auth', 'verified']], function() {
+
+    // Listados Maestros (para carga de combos)
     Route::get('api/ambientes/habilitados', 'maestros\AmbienteController@habilitados')->name('ambientes.habilitados');
     Route::apiResource('api/ambientes', 'maestros\AmbienteController');
-
     Route::get('/lenguajes', 'maestros\LenguajeController@inicio')->name('lenguajes.inicio');
     Route::apiResource('api/lenguajes', 'maestros\LenguajeController');
-
-    Route::get('/clientes', 'maestros\ClienteController@inicio')->name('clientes.inicio');
     Route::get('api/clientes/habilitados', 'maestros\ClienteController@habilitados')->name('clientes.habilitados');
     Route::apiResource('api/clientes', 'maestros\ClienteController');
-
-    Route::get('/bases', 'maestros\BaseController@inicio')->name('bases.inicio');
     Route::apiResource('api/bases', 'maestros\BaseController');
-
-    Route::get('/roles', 'maestros\RoleController@inicio')->name('roles.inicio');
     Route::apiResource('api/roles', 'maestros\RoleController');
-
-    Route::get('/perfiles', 'maestros\PerfileController@inicio')->name('perfiles.inicio');
     Route::apiResource('api/perfiles', 'maestros\PerfileController');
-
-    Route::get('/authentications', 'maestros\AuthenticationController@inicio')->name('authentications.inicio');
     Route::get('api/authentications/habilitados', 'maestros\AuthenticationController@habilitados')->name('authentications.habilitados');
     Route::apiResource('api/authentications', 'maestros\AuthenticationController');
-
-    Route::get('/estados', 'maestros\EstadoController@inicio')->name('estados.inicio');
     Route::apiResource('api/estados', 'maestros\EstadoController');
-
-    Route::get('/criticidad', 'maestros\CriticidadController@inicio')->name('criticidad.inicio');
     Route::apiResource('api/criticidad', 'maestros\CriticidadController');
-
-    Route::get('/repositorios', 'maestros\RepositorioController@inicio')->name('repositorios.inicio');
     Route::get('api/repositorios/habilitados', 'maestros\RepositorioController@habilitados')->name('repositorios.habilitados');
     Route::apiResource('api/repositorios', 'maestros\RepositorioController');
-
-    Route::get('/documentations', 'maestros\DocumentationController@inicio')->name('documentations.inicio');
     Route::get('api/documentations/habilitados', 'maestros\DocumentationController@habilitados')->name('documentations.habilitados');
     Route::apiResource('api/documentations', 'maestros\DocumentationController');
-
-    Route::get('/impactos', 'maestros\ImpactoController@inicio')->name('impactos.inicio');
     Route::apiResource('api/impactos', 'maestros\ImpactoController');
 
     // Sistemas
@@ -133,20 +145,6 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::delete('/api/ambientes-sistema/{ambiente}', 'SistemaController@deleteAmbienteSistema')->name('ambientes.delete');
     Route::get('/api/ambiente-sistema/{ambiente}', 'SistemaController@getAmbiente')->name('ambiente.get');
     Route::put('/api/ambiente-sistema', 'SistemaController@updateAmbiente')->name('ambiente.update');
-
-    // Usuarios
-    Route::post('/usuarios/buscar', 'usuarios\UsuarioController@buscar')->name('usuarios.buscar');
-    Route::get('/usuarios', 'usuarios\UsuarioController@index')->name('usuarios.index');
-    Route::get('/solicitudes', 'usuarios\UsuarioController@solicitudes')->name('usuarios.solicitudes');
-    Route::get('/usuarios/{usuario}', 'usuarios\UsuarioController@show')->name('usuarios.show');
-    Route::put('/usuarios/{usuario}', 'usuarios\UsuarioController@update')->name('usuarios.update');
-    Route::post('/usuarios/update/baja', 'usuarios\UsuarioController@delete')->name('usuarios.delete');
-    Route::post('/usuarios/update/habilitar', 'usuarios\UsuarioController@habilitar')->name('usuarios.habilitar');
-    Route::post('/usuarios/update/rechazar', 'usuarios\UsuarioController@rechazar')->name('usuarios.rechazar');
-    Route::get('/api/usuarios/{termino}', 'usuarios\UsuarioController@getUsuarios')->name('usuarios.get');
-
-    // Seguridad
-    Route::get('/pendiente-aprobacion', 'usuarios\UsuarioController@pendienteAprobacion')->name('pendiente.aprobacion');
 
     // Exports Excel
     Route::get('/exports/sistemas', function() {

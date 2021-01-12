@@ -16,6 +16,25 @@ class UserPolicy
         //
     }
 
+    // Restingo el index de los paneles maestros
+    public function inicio(User $authUser, User $user)
+    {
+        // return $authUser->perfil === 'ADMIN';
+        return true;
+    }
+
+    // Restingo el panel de usuarios
+    public function index(User $authUser, User $user)
+    {
+        return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'SEGURIDAD';
+    }
+
+    // Restingo el panel de solicitides de usuario
+    public function solicitudes(User $authUser, User $user)
+    {
+        return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'SEGURIDAD';
+    }
+
     public function create(User $authUser, User $user)
     {
         return $authUser->perfil === 'ADMIN' || $authUser->perfil === 'CARGA';

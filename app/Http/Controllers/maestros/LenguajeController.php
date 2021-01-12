@@ -23,6 +23,7 @@ class LenguajeController extends Controller
 
     public function inicio()
     {
+        $this->authorize(Auth()->user());
         return view('maestros/lenguajes');
     }
 
