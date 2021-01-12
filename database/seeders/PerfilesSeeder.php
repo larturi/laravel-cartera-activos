@@ -51,6 +51,14 @@ class PerfilesSeeder extends Seeder
 
         // ABM Usuarios, Consulta Sistemas
         DB::table('perfiles')->insert([
+            'nombre'     => 'SEGURIDAD',
+            'user_id'    => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        // Consulta Sistemas y Usuarios
+        DB::table('perfiles')->insert([
             'nombre'     => 'AUDITORIA',
             'user_id'    => 1,
             'created_at' => Carbon::now(),

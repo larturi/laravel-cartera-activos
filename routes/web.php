@@ -3,7 +3,6 @@
 use App\Exports\SistemasExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,6 +145,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('/usuarios/update/rechazar', 'usuarios\UsuarioController@rechazar')->name('usuarios.rechazar');
     Route::get('/api/usuarios/{termino}', 'usuarios\UsuarioController@getUsuarios')->name('usuarios.get');
 
+    // Seguridad
+    Route::get('/pendiente-aprobacion', 'usuarios\UsuarioController@pendienteAprobacion')->name('pendiente.aprobacion');
+
     // Exports Excel
     Route::get('/exports/sistemas', function() {
         return (new SistemasExport)->download('sistemas.xlsx');
@@ -162,8 +164,4 @@ Route::get('/home', function () {
     return redirect('sistemas');
 });
 
-Route::get('/pendiente-aprobacion', function () {
-    Auth::logout();
-    return redirect('/login')->with('message', 'La verificación de email fue correcta. Falta que el Administrador apruebe tu solicitud.');;
-});
 

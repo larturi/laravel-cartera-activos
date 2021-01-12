@@ -4,16 +4,19 @@ namespace App\Http\Controllers\usuarios;
 
 // @author: Leandro Arturi (u57322)
 
-use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
-
-use App\Models\Role;
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 use App\Services\Usuario\UsuarioService;
+use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewUserCreatedNotification;
 
 class UsuarioController extends Controller
 {
@@ -79,6 +82,19 @@ class UsuarioController extends Controller
         $usuario->save();
 
         return $usuario;
+    }
+
+    public function pendienteAprobacion()
+    {
+        // Notifico al administrador
+        $administradores = User::where('perfil', '=', 'ADMIN')
+        ->orWhere('perfil', '=', 'SEGURIDAD')
+        ->get();
+
+        Notification::send($administradores, new NewUserCreatedNotification(Auth::user()));
+
+        Auth::logout();
+        return redirect('/login')->with('message', 'La verificación de email fue correcta. Falta que el Administrador apruebe tu solicitud.');
     }
 
 }
