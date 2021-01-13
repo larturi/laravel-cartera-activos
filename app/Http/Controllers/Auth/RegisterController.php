@@ -75,7 +75,7 @@ class RegisterController extends Controller
             'apellido' => $data['apellido'],
             'legajo' => $data['legajo'],
             'user' => 'U' . $data['legajo'] ,
-            'perfil' => 'LECTURA',
+            'perfil' => 'PENDIENTE',
             'habilitado' => 0,
             'role' => $data['role_id'],
             'password' => Hash::make($data['password']),

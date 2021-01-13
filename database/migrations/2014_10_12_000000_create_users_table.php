@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('role')->comment = 'Rol del recurso, ej: Analista, Desarrollador, Tester';
             $table->boolean('es_jefe')->default(false);
             $table->boolean('habilitado')->default(true);
-            $table->boolean('approved')->default(false);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

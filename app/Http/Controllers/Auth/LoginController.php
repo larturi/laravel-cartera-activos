@@ -47,14 +47,14 @@ class LoginController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->approved == 0) {
+        if ($user->perfil == 'PENDIENTE') {
 
             Auth::logout();
 
             return redirect()->back()->with('message', 'Aún se encuentra pendiente la aprobación del Administrador.');
         }
 
-        if ($user->habilitado == 0) {
+        if ($user->habilitado == 2) {
 
             Auth::logout();
 

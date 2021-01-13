@@ -47,7 +47,6 @@ Route::group(['middleware' => ['auth', 'verified', 'seguridad']], function() {
     Route::post('/usuarios/update/habilitar', 'usuarios\UsuarioController@habilitar')->name('usuarios.habilitar');
     Route::post('/usuarios/update/rechazar', 'usuarios\UsuarioController@rechazar')->name('usuarios.rechazar');
     Route::get('/api/usuarios/{termino}', 'usuarios\UsuarioController@getUsuarios')->name('usuarios.get');
-    Route::get('/pendiente-aprobacion', 'usuarios\UsuarioController@pendienteAprobacion')->name('pendiente.aprobacion');
 
 });
 
@@ -72,6 +71,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('api/documentations/habilitados', 'maestros\DocumentationController@habilitados')->name('documentations.habilitados');
     Route::apiResource('api/documentations', 'maestros\DocumentationController');
     Route::apiResource('api/impactos', 'maestros\ImpactoController');
+
+    // Notificacion a admin cuando un usuario se da de alta y redirijo al login informando aprobacion pendiente
+    Route::get('/pendiente-aprobacion', 'usuarios\UsuarioController@pendienteAprobacion')->name('pendiente.aprobacion');
 
     // Sistemas
     Route::post('/sistemas/buscar', 'SistemaController@buscarSistemas')->name('sistemas.buscar');

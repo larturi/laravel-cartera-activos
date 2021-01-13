@@ -51,7 +51,6 @@ class UsuarioController extends Controller
     {
         $usuario = User::find($request['id_usuario']);
         $usuario->perfil = $request['id_perfil'];
-        $usuario->approved = 1;
         $usuario->save();
 
         return $usuario;
@@ -60,7 +59,7 @@ class UsuarioController extends Controller
     public function delete(Request $request)
     {
         $usuario = User::find($request['id_usuario']);
-        $usuario->habilitado = 0;
+        $usuario->habilitado = 2;
         $usuario->save();
 
         return $usuario;

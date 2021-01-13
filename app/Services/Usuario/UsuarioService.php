@@ -9,6 +9,12 @@ use DB;
 use App\Models\User;
 use App\Services\BaseService;
 
+// El sistema mira las columnas habilitado y perfil de la tabla users
+// 1. El usuario solicita acceso y valida correo -> habilitado = 0, perfil = PENDIENTE
+// 2. El admin acepta solicitud                  -> habilitado = 1, perfil = PENDIENTE
+// 3. El admin asigna rol                        -> habilitado = 1, perfil != PENDIENTE
+// 4. El admin rechaza solicitud rol             -> habilitado = 2, perfil != PENDIENTE
+
 class UsuarioService extends BaseService
 {
   public function buscar($termino = '')
@@ -19,14 +25,15 @@ class UsuarioService extends BaseService
     if ($termino == 'all_users') {
 
       return User::orderBy('apellido')
-                 ->where('approved', '=', 1)
+                 ->where('habilitado', '=', 1)
+                 ->where('perfil', '<>', 'PENDIENTE')
                  ->paginate($paginator_items);
                  
     } elseif ($termino == 'aprobacion_pendiente') {
 
-      return User::orderBy('apellido')
-                  ->where('approved', '=', 0)
-                  ->where('habilitado', '=', 0)
+      return User::where('perfil', '=', 'PENDIENTE')
+                  ->where('habilitado', '<>', 2)
+                  ->orderBy('apellido')
                   ->paginate($paginator_items);
 
     } else {

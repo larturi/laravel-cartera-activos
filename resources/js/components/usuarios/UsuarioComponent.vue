@@ -24,7 +24,7 @@
                 </div>
             </form>
         </td>
-        <td v-if="usuario.approved === 0">
+        <td v-if="usuario.role === 0">
             <span class="badge bg-primary">Pendiente</span>
         </td>
         <td v-else-if="usuario.habilitado === 1">
@@ -35,7 +35,7 @@
         </td>
 
         <td>
-            <a v-if="usuario.approved === 0 && edit === false && usuario.habilitado === 1"
+            <a v-if="edit === false && usuario.habilitado === 1"
                href="#"
                class="mr-2 btn btn-success btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickAsignarRol()">Asignar Rol
@@ -54,18 +54,17 @@
                class="mr-2 mb-2 mt-2"
                >El usuario debe confirmar su email
             </p>
-           
-            <a v-if="usuario.habilitado === 0 && usuario.email_verified_at !== null"
+            <a v-if="(usuario.habilitado === 0 && usuario.email_verified_at !== null) || usuario.habilitado === 2"
                href="#"
                class="mr-2 btn btn-success btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickHabilitar()">Habilitar
             </a>
-            <a v-if="usuario.habilitado === 0 && usuario.email_verified_at !== null"
+            <a v-if="usuario.habilitado === 0 && usuario.perfil === 'PENDIENTE' && usuario.email_verified_at !== null"
                href="#"
                class="mr-2 btn btn-danger btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickRechazar()">Rechazar
             </a>
-            <a v-if="usuario.habilitado === 1 && usuario.approved === 1 && !edit"
+            <a v-if="usuario.habilitado === 1 && usuario.role === 1 && !edit"
                href="#"
                class="mr-2 btn btn-primary btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickAsignarRol()">Rol

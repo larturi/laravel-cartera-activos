@@ -19,7 +19,8 @@
                                     placeholder="Buscar por nombre, email o usuario"
                                     class="form-control"
                                     v-model="termino"
-                                    @keyup="procesarInput"
+                                    @keydown.enter.prevent="procesarInput"
+                                    @keyup.prevent="procesarInput"
                                     autofocus>
                             </div>
 

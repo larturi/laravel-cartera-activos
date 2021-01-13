@@ -33,7 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
         'es_jefe',
         'habilitado',
-        'approved',
         'email',
         'password',
     ];
