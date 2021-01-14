@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Log;
 
 class NewUserCreatedNotification extends Notification implements ShouldQueue
 {
@@ -43,10 +44,13 @@ class NewUserCreatedNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+        Log::info('ddd' );
+        Log::info(config("app.url") . '/solicitudes' );
+        Log::info(url( config("app.url") . '/solicitudes')  );
         return (new MailMessage)
                     ->subject('Nueva Solicitud de Usuario')
                     ->line($this->user->name . ' ' . $this->user->apellido . ' ha solicitado acceso al sistema.')
-                    ->action('Ver Solicitudes Pendientes', url('/solicitudes'))
+                    ->action('Ver Solicitudes Pendientes', url( config("app.url") . '/solicitudes') )
                     ->line('Muchas gracias!');
     }
 
@@ -59,8 +63,8 @@ class NewUserCreatedNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'link' => route('usuarios.solicitudes'),
-            'text' => 'Nueva Solicitud de Usuario de ' . $this->user->name . ' ' . $this->user->apellido
+            'link' => url( config("app.url") . '/solicitudes'),
+            'text' => $this->user->name . ' ' . $this->user->apellido . ' solicita acceso al sistema.'
         ];
     }
 }

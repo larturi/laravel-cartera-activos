@@ -66,6 +66,9 @@ Vue.component('usuarios-solicitud-component', require('./components/usuarios/Usu
 Vue.component('sistemas-component', require('./components/sistema/SistemasComponent.vue').default);
 Vue.component('sistemas-buscador-component', require('./components/sistema/SistemasBuscadorComponent.vue').default);
 
+// Notificaciones
+Vue.component('notificaciones-component', require('./components/NotificacionesComponent.vue').default);
+
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 const app = new Vue({

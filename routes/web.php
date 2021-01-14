@@ -52,6 +52,9 @@ Route::group(['middleware' => ['auth', 'verified', 'seguridad']], function() {
 
 Route::group(['middleware' => ['auth', 'verified']], function() {
 
+    // Notificaciones 
+    Route::get('notificaciones', 'NotificationsController@index')->name('notifications.index');
+
     // Listados Maestros (para carga de combos)
     Route::get('api/ambientes/habilitados', 'maestros\AmbienteController@habilitados')->name('ambientes.habilitados');
     Route::apiResource('api/ambientes', 'maestros\AmbienteController');

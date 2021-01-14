@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         users: [],
         usersFiltrados: [],
+        notifications: [],
         termino: '',
         total_usuarios: 0,
         per_page: 0,
@@ -29,6 +30,9 @@ export default new Vuex.Store({
         },
         setPaginaActual(state, payload) {
             state.pagina_actual = Number(payload);
+        },
+        setNotifications(state, payload) {
+            state.notifications = payload;
         },
     },
 

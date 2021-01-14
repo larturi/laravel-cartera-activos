@@ -19,16 +19,7 @@
         <i class="far fa-bell"></i>
         <span class="badge navbar-badge"></span>
     </a>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-        <span class="dropdown-item dropdown-header">No hay notificaciones</span>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-            <i class="fas fa-user-check mr-2"></i> Sin solicitudes pendientes
-        </a>
-        
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer"></a>
-    </div>
+    <notificaciones-component />
 </li>
 
 {{-- User menu toggler --}}
