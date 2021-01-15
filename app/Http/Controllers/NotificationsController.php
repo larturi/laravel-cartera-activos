@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class NotificationsController extends Controller
@@ -13,8 +12,16 @@ class NotificationsController extends Controller
 
     public function index()
     {
-        Log::info(auth()->user()->notifications);
-        return auth()->user()->notifications;
+        return auth()->user()->notifications->whereNull('read_at');
+    }
+
+    public function marcarLeida($notificationId)
+    {
+        $notification = auth()->user()->notifications->where('id', '=', $notificationId);
+        
+        $notification->markAsRead();
+
+        return $notification;
     }
 
 }

@@ -44,9 +44,6 @@ class NewUserCreatedNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        Log::info('ddd' );
-        Log::info(config("app.url") . '/solicitudes' );
-        Log::info(url( config("app.url") . '/solicitudes')  );
         return (new MailMessage)
                     ->subject('Nueva Solicitud de Usuario')
                     ->line($this->user->name . ' ' . $this->user->apellido . ' ha solicitado acceso al sistema.')

@@ -8,7 +8,7 @@
             Sin notificaciones pendientes
         </a>
 
-        <a :href="notification.data.link" class="dropdown-item" v-for="notification in notifications" :key="notification.id">
+        <a :href="notification.data.link" @click="marcarLeida(notification.id)" class="dropdown-item" v-for="notification in notifications" :key="notification.id">
             <span>
                 <small>
                     {{notification.data.text.substring(0,50) + '...'}}
@@ -17,7 +17,9 @@
         </a>
 
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer"></a>
+        <a href="#" v-if="notifications.length > 0" class="dropdown-item dropdown-footer">
+            Marcar todo como leído
+        </a>
 
   </div>
 </template>
@@ -41,6 +43,11 @@ export default {
                     this.$store.commit('setNotifications', response.data);
                 });
             },
+            marcarLeida(notificationId) {
+                axios.get(`/notificacion/${notificationId}`).then( (response) => {
+                    console.log(notificationId);
+                });
+            }
         },
 
         mounted() {
