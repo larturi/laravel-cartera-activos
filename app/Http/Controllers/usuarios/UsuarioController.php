@@ -93,7 +93,7 @@ class UsuarioController extends Controller
         Notification::send($administradores, new NewUserCreatedNotification(Auth::user()));
 
         Auth::logout();
-        return redirect('/login')->with('message', 'La verificación de email fue correcta. Falta que el Administrador apruebe tu solicitud.');
+        return redirect('/login')->with('message', 'La verificación de email fue correcta, pero el Administrador debe aprobar tu solicitud.');
     }
 
 }

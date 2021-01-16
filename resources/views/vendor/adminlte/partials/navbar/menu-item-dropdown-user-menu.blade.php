@@ -15,10 +15,6 @@
 
 {{-- Notificaciones --}}
 <li class="nav-item dropdown show">
-    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-        <i class="far fa-bell"></i>
-        <span class="badge navbar-badge"></span>
-    </a>
     <notificaciones-component />
 </li>
 

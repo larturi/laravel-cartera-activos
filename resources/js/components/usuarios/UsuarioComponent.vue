@@ -37,7 +37,7 @@
         <td>
             <a v-if="edit === false && usuario.habilitado === 1"
                href="#"
-               class="mr-2 btn btn-success btn-sm btn-block mb-2 mt-2"
+               class="mr-2 btn btn-primary btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickAsignarRol()">Asignar Rol
             </a>
             <a v-if="edit"

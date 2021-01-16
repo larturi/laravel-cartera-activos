@@ -9,6 +9,7 @@ export default new Vuex.Store({
         users: [],
         usersFiltrados: [],
         notifications: [],
+        solicitudes: 0,
         termino: '',
         total_usuarios: 0,
         per_page: 0,
@@ -33,6 +34,9 @@ export default new Vuex.Store({
         },
         setNotifications(state, payload) {
             state.notifications = payload;
+        },
+        setSolicitudes(state, payload) {
+            state.solicitudes = payload;
         },
     },
 
