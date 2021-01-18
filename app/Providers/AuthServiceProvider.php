@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+// @author: Leandro Arturi (u57322)
+
 use App\Models\User;
 
 use App\Policies\UserPolicy;

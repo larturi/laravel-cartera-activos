@@ -314,6 +314,11 @@ return [
                     'route'     => 'repositorios.inicio',
                     'icon'    => 'fas fa-fw fa-edit',
                 ],
+                [
+                    'text'    => 'Perfiles',
+                    'route'     => 'perfiles.inicio',
+                    'icon'    => 'fas fa-fw fa-edit',
+                ],
 
             ],
         ],
@@ -323,12 +328,6 @@ return [
             'can'     => ['admin-user'],
             'icon'    => 'fas fa-fw fa-user-lock',
             'submenu' => [
-
-                [
-                    'text'    => 'Perfiles',
-                    'route'     => 'perfiles.inicio',
-                    'icon'    => 'fas fa-fw fa-edit',
-                ],
 
                 [
                     'text'    => 'Usuarios',

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
+// Administración de Maestros 
 Route::group(['middleware' => ['auth', 'verified', 'admin']], function() {
 
     // CRUD Maestros
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth', 'verified', 'admin']], function() {
 
 });
 
+// Administración de Usurios y Solicitudes
 Route::group(['middleware' => ['auth', 'verified', 'seguridad']], function() {
 
     // Usuarios
@@ -50,6 +52,7 @@ Route::group(['middleware' => ['auth', 'verified', 'seguridad']], function() {
 
 });
 
+// Acceso para todos los perfiles y se limita a traves de UserPolicy.php permiso de edición
 Route::group(['middleware' => ['auth', 'verified']], function() {
 
     // Notificaciones 
@@ -59,7 +62,6 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // Listados Maestros (para carga de combos)
     Route::get('api/ambientes/habilitados', 'maestros\AmbienteController@habilitados')->name('ambientes.habilitados');
     Route::apiResource('api/ambientes', 'maestros\AmbienteController');
-    Route::get('/lenguajes', 'maestros\LenguajeController@inicio')->name('lenguajes.inicio');
     Route::apiResource('api/lenguajes', 'maestros\LenguajeController');
     Route::get('api/clientes/habilitados', 'maestros\ClienteController@habilitados')->name('clientes.habilitados');
     Route::apiResource('api/clientes', 'maestros\ClienteController');

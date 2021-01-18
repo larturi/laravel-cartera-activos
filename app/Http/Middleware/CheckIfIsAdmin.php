@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+// @author: Leandro Arturi (u57322)
+
 use Closure;
 use Illuminate\Http\Request;
 

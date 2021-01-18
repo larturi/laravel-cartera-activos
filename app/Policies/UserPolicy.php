@@ -19,7 +19,7 @@ class UserPolicy
     // Restingo el index de los paneles maestros
     public function inicio(User $authUser, User $user)
     {
-        // return $authUser->perfil === 'ADMIN';
+        return $authUser->perfil === 'ADMIN';
         return true;
     }
 
