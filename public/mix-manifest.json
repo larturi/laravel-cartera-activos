@@ -1,5 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/helpers.js": "/js/helpers.js"
+    "/js/app.js.map": "/js/app.js.map",
+    "/css/app.css.map": "/css/app.css.map",
+    "/js/helpers.js": "/js/helpers.js",
+    "/js/helpers.js.map": "/js/helpers.js.map"
 }
