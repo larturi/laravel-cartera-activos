@@ -10,10 +10,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Log;
 
-class NewUserCreatedNotification extends Notification implements ShouldQueue
+class NewUserCreatedNotification extends Notification // implements ShouldQueue
 {
     protected $user;
-    use Queueable;
+    // use Queueable;
 
     /**
      * Create a new notification instance.
