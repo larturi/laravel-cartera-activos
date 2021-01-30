@@ -1,0 +1,40 @@
+version: "3"
+services: 
+  app:
+    image: cds-img
+    container_name: cds-container
+    build: ./
+    restart: always
+    ports: 
+      - "81:80"
+    volumes: 
+      - .:/var/www/html
+  phpmyadmin-cds:
+    image: phpmyadmin
+    container_name: phpmyadmin-cds
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    depends_on: 
+      - mysql-cds
+    ports: 
+      - "82:80"
+    links: 
+      - mysql-cds:db
+  mysql-cds:
+    container_name: mysql-cds
+    image: mariadb
+    restart: always
+    ports: 
+      - "3306:3306"
+    volumes: 
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_HOST: 0.0.0.0
+      MYSQL_ROOT_PASSWORD: root
+volumes: 
+  mysql:
+    driver: "local"
+
+
+    
+
