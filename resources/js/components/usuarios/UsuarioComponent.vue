@@ -24,7 +24,7 @@
                 </div>
             </form>
         </td>
-        <td v-if="usuario.role === 0">
+        <td v-if="usuario.habilitado === 0">
             <span class="badge bg-primary">Pendiente</span>
         </td>
         <td v-else-if="usuario.habilitado === 1">
@@ -50,15 +50,16 @@
                class="mr-2 btn btn-danger btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickBaja()">Baja
             </a>
-            <p v-if="usuario.habilitado === 0 && usuario.email_verified_at === null"
-               class="mr-2 mb-2 mt-2"
-               >El usuario debe confirmar su email
-            </p>
-            <a v-if="(usuario.habilitado === 0 && usuario.email_verified_at !== null) || usuario.habilitado === 2"
+            <a v-if="(usuario.habilitado === 0) || usuario.habilitado === 2"
                href="#"
                class="mr-2 btn btn-success btn-sm btn-block mb-2 mt-2"
                v-on:click.prevent="onClickHabilitar()">Habilitar
             </a>
+            <p v-if="usuario.habilitado === 0 && usuario.email_verified_at === null"
+               class="mr-2 mb-2 mt-2 text-center small"
+            >
+                (El usuario no confirmó su email)
+            </p>
             <a v-if="usuario.habilitado === 0 && usuario.perfil === 'PENDIENTE' && usuario.email_verified_at !== null"
                href="#"
                class="mr-2 btn btn-danger btn-sm btn-block mb-2 mt-2"
